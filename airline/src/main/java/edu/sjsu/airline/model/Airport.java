@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table
 public class Airport {
@@ -24,9 +26,11 @@ public class Airport {
 	
 	private String country;
 	
+	@JsonIgnore
 	@OneToMany
 	private Set<Route> routesOrigin;
 	
+	@JsonIgnore
 	@OneToMany
 	private Set<Route> routesDestination;
 	

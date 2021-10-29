@@ -1,11 +1,16 @@
 package edu.sjsu.airline.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table
@@ -15,6 +20,10 @@ public class Employee extends Person {
 	
 	@Enumerated( EnumType.STRING )
 	private Position position;
+	
+	@JsonIgnore
+	@ManyToMany( mappedBy = "crew" )
+	private Set<Flight> flights = new HashSet<>();
 	
 	public Employee (  ) { super(); }
 

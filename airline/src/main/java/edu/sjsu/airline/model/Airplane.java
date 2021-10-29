@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,8 +11,7 @@ import javax.persistence.Table;
 public class Airplane {
 	
 	@Id
-	@SequenceGenerator( name = "airplane_sequence", sequenceName = "airplane_sequence", allocationSize = 1 )
-	@GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "airplane_sequence" )
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long airplaneId;
 	
 	private String airplaneCode;

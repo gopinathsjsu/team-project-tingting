@@ -19,14 +19,8 @@ import edu.sjsu.airline.service.AirplaneService;
 @RequestMapping(path = "/api/v1/airplane")
 public class AirplaneController {
 	
-private final AirplaneService airplaneService;
-	
 	@Autowired
-	public AirplaneController( AirplaneService airplaneService ) {
-		
-		this.airplaneService = airplaneService;
-		
-	}
+	private AirplaneService airplaneService;
 	
 	@GetMapping
 	public List<Airplane> getAirplanes() {

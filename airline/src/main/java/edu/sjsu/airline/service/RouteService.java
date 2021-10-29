@@ -36,8 +36,6 @@ public class RouteService {
 	
 	public void addRoute( Route newRoute ) {
 		
-		newRoute.setRouteCode( newRoute.getOriginAirport().getAirportCode() + "-" + newRoute.getDestinationAirport().getAirportCode()  );
-		
 		routeRepository.save(newRoute);
 		
 	}

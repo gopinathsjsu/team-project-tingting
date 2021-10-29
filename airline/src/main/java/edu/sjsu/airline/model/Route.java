@@ -1,5 +1,6 @@
 package edu.sjsu.airline.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -12,10 +13,10 @@ public class Route {
 	@Id
 	private String routeCode;
 	
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL )
 	private Airport originAirport;
 	
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL )
 	private Airport destinationAirport;
 	
 	private double distance;

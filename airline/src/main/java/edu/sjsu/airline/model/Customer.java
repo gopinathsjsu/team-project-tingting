@@ -1,6 +1,10 @@
 package edu.sjsu.airline.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,12 @@ public class Customer extends Person {
 	private String identification;
 	
 	private String identificationType;
+	
+	@OneToOne( mappedBy = "customer" )
+	private RewardAccount rewardAccount;
+	
+	@OneToMany( mappedBy = "customer" )
+	private Set<Ticket> ticket;
 	
 	public Customer (  ) { super(); }
 
@@ -58,6 +68,14 @@ public class Customer extends Person {
 
 	public void setIdentificationType(String identificationType) {
 		this.identificationType = identificationType;
+	}
+	
+	public RewardAccount getRewardAccount() {
+		return rewardAccount;
+	}
+
+	public void setRewardAccount(RewardAccount rewardAccount) {
+		this.rewardAccount = rewardAccount;
 	}
 
 	@Override

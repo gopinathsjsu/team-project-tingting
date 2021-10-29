@@ -12,21 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.sjsu.airline.model.Airport;
 import edu.sjsu.airline.model.Route;
+import edu.sjsu.airline.service.AirportService;
 import edu.sjsu.airline.service.RouteService;
 
 @RestController
 @RequestMapping( path = "api/v1/route" )
 public class RouteController {
 	
-	private final RouteService routeService;
+	@Autowired
+	private RouteService routeService;
 	
 	@Autowired
-	public RouteController( RouteService routeService ) {
-		
-		this.routeService = routeService;
-		
-	}
+	private AirportService airportService;
 	
 	@GetMapping
 	public List<Route> getRoutes() {
@@ -45,7 +44,42 @@ public class RouteController {
 	@PostMapping
 	public void addNewRoute( @RequestBody Route route ) {
 		
+		// The routeCode should be originAirportCode-destinationAirportCode( E.g.: SFO-LAX )
+		String[] airports = route.getRouteCode().split("-");
+		
+		Airport originAirport = airportService.getByAirportCode( airports[0] );
+		Airport destinationAirport = airportService.getByAirportCode( airports[1] );
+		
+		route.setOriginAirport(originAirport);
+		route.setDestinationAirport(destinationAirport);
+		
 		routeService.addRoute( route );
+		
+	}
+	
+	@PutMapping( path = "/{routeCode}/originAirport/{airportCode}" )
+	public void assignOriginAirportToRoute( @PathVariable String routeCode, @PathVariable String airportCode ) {
+		
+		Route route = routeService.getByRouteId( routeCode );
+		
+		Airport airport = airportService.getByAirportCode( airportCode );
+		
+		route.setOriginAirport(airport);
+		
+		routeService.updateRoute( route );
+		
+	}
+	
+	@PutMapping( path = "/{routeCode}/destinationAirport/{airportCode}" )
+	public void assignDestinationAirportToRoute( @PathVariable String routeCode, @PathVariable String airportCode ) {
+		
+		Route route = routeService.getByRouteId( routeCode );
+		
+		Airport airport = airportService.getByAirportCode( airportCode );
+		
+		route.setDestinationAirport(airport);
+		
+		routeService.updateRoute( route );
 		
 	}
 	
