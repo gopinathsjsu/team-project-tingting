@@ -10,7 +10,7 @@
 
 - What tasks are blocked waiting on another team member?
 
-- XP Values: SSimplicity
+- XP Values: Simplicity
 
 
 • Team Member Name: Rodrigo
