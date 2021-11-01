@@ -1,6 +1,6 @@
 # Airline Reservation Application
 
-## Introduction:
+## Introduction
 
 ## Architecture Diagram
 
