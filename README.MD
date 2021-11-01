@@ -17,7 +17,7 @@
 - Respect
 
 
-## Sprint #1:
+## Sprint #2:
 - Thai:
 - Hema:
 - AJ:
