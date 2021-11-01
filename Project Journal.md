@@ -5,12 +5,13 @@
 • Team Member Name: AJ
 
 - What tasks did I work on / complete?
+Worked on the actvity diagram
 
 - What am I planning to work on next?
 
 - What tasks are blocked waiting on another team member?
 
-- XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
+- XP Values: SSimplicity
 
 
 • Team Member Name: Rodrigo
