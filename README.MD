@@ -1,6 +1,6 @@
 # Project Journal
 
-## Sprint 1:
+## Sprint #1:
 - Thai: Design the User Interface - He'll also be responsible for the frontend development
 - Hema: Design the Business Logic ( Use Case Diagram ) - Needs to communicate with Rodrigo because of the entities names
 - AJ: Design the Business Logic ( Activity Diagram ) - Need to communicate with Hema
