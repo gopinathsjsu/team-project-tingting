@@ -4,7 +4,7 @@
 
 • Team Member Name: AJ
 
-- What tasks did I work on / complete?
+    What tasks did I work on / complete?
 
 - Worked on the actvity diagram
 
