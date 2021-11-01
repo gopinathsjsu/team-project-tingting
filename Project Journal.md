@@ -6,7 +6,7 @@
 
 - What tasks did I work on / complete?
 
-Worked on the actvity diagram
+- Worked on the actvity diagram
 
 - What am I planning to work on next?
 
