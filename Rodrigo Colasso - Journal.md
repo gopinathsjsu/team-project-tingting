@@ -4,6 +4,23 @@
 
 Rodrigo Colasso Teixeira
 
+### Sprint #3
+
+#### What tasks did I work on / complete?
+
+- Studied how to implement API in java using Spring Boot;
+- Committed/pushed the backend strucure with the basic API routes;
+- Pushed/Updated my weekly journal;
+
+#### What am I planning to work on next?
+
+- Develop validations for API inputs;
+- Distribute the project components for the team members;
+
+#### What tasks are blocked waiting on another team member?
+
+- N/A
+
 ### Sprint #2
 
 #### What tasks did I work on / complete?
@@ -19,13 +36,13 @@ Rodrigo Colasso Teixeira
 
 #### What tasks are blocked waiting on another team member?
 
-N/A
+- N/A
 
 ### Sprint #1
 
 #### What tasks did I work on / complete?
 
-N/A
+- N/A
 
 #### What am I planning to work on next
 
@@ -34,4 +51,4 @@ N/A
 
 #### What tasks are blocked waiting on another team member?
 
-N/A
+- N/A
