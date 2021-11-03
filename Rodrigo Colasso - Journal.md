@@ -20,6 +20,10 @@ Rodrigo Colasso Teixeira
 #### What tasks are blocked waiting on another team member?
 
 - N/A
+
+#### Core value
+
+- Asked my colleagues for feedback on the status of each task and reported on the tasks I had completed.
 ___________________________________________________________
 
 ### Sprint #2
@@ -38,6 +42,10 @@ ___________________________________________________________
 #### What tasks are blocked waiting on another team member?
 
 - N/A
+
+#### Core value
+
+- Informed my team about the tasks I had already completed this week and which ones I was planning to do.
 ___________________________________________________________
 
 ### Sprint #1
@@ -54,3 +62,11 @@ ___________________________________________________________
 #### What tasks are blocked waiting on another team member?
 
 - N/A
+
+#### Core value
+
+- Checked with the others members what they are doing and give then feedback about my taks
+
+## XP Core Value
+
+- Feedback
