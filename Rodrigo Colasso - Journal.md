@@ -20,6 +20,7 @@ Rodrigo Colasso Teixeira
 #### What tasks are blocked waiting on another team member?
 
 - N/A
+___________________________________________________________
 
 ### Sprint #2
 
@@ -37,6 +38,7 @@ Rodrigo Colasso Teixeira
 #### What tasks are blocked waiting on another team member?
 
 - N/A
+___________________________________________________________
 
 ### Sprint #1
 
