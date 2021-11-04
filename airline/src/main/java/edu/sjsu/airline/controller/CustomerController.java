@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.sjsu.airline.model.Customer;
+import edu.sjsu.airline.model.Login;
 import edu.sjsu.airline.service.CustomerService;
 
 @RestController
@@ -60,6 +61,13 @@ private final CustomerService customerService;
 	public void deleteCustomer( @PathVariable("customerId") Long customerId ) {
 		
 		customerService.deleteCustomer( customerId );
+		
+	}
+	
+	@PutMapping( path = "/login" )
+	public void assignRouteToFlight( @RequestBody Login login ) {
+		
+		customerService.authenticateUser( login );
 		
 	}
 
