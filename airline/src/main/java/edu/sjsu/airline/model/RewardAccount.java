@@ -9,6 +9,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class RewardAccount {
@@ -25,8 +30,6 @@ public class RewardAccount {
 	@OneToOne(cascade = CascadeType.ALL )
 	private Customer customer;
 	
-	public RewardAccount() { }
-
 	public RewardAccount(Long rewardAccountId, String accountnumber, double balance) {
 		
 		this.rewardAccountId = rewardAccountId;
@@ -58,19 +61,13 @@ public class RewardAccount {
 	public void setBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
 	public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	@Override
-	public String toString() {
-		return "RewardAccount [rewardAccountId=" + rewardAccountId + ", accountnumber=" + accountnumber + ", balance="
-				+ balance + "]";
 	}
 	
 }

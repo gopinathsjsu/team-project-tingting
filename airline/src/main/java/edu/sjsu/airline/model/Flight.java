@@ -13,6 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Flight {
@@ -44,8 +49,6 @@ public class Flight {
 	@OneToMany(mappedBy = "flight" )
 	private Set<Seat> seats;
 
-	public Flight( ) { }
-	
 	public Flight(int flightNumber, Route route, Airplane flightEquipment, LocalDateTime estimatedDepartureDateTime,
 			LocalDateTime estimatedArrivalDateTime, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime,
 			Set<Employee> crew, Set<Seat> seats) {
@@ -61,7 +64,7 @@ public class Flight {
 		this.seats = seats;
 		
 	}
-
+	
 	public Long getFlightId() {
 		return flightId;
 	}
@@ -76,22 +79,6 @@ public class Flight {
 
 	public void setFlightNumber(int flightNumber) {
 		this.flightNumber = flightNumber;
-	}
-
-	public Route getRoute() {
-		return route;
-	}
-
-	public void setRoute(Route route) {
-		this.route = route;
-	}
-
-	public Airplane getFlightEquipment() {
-		return flightEquipment;
-	}
-
-	public void setFlightEquipment(Airplane flightEquipment) {
-		this.flightEquipment = flightEquipment;
 	}
 
 	public LocalDateTime getEstimatedDepartureDateTime() {
@@ -126,14 +113,6 @@ public class Flight {
 		this.arrivalDateTime = arrivalDateTime;
 	}
 
-	public Set<Employee> getCrew() {
-		return crew;
-	}
-
-	public void setCrew(Set<Employee> crew) {
-		this.crew = crew;
-	}
-
 	public Set<Seat> getSeats() {
 		return seats;
 	}
@@ -142,12 +121,28 @@ public class Flight {
 		this.seats = seats;
 	}
 
-	@Override
-	public String toString() {
-		return "Flight [flightId=" + flightId + ", flightNumber=" + flightNumber + ", route=" + route
-				+ ", flightEquipment=" + flightEquipment + ", estimatedDepartureDateTime=" + estimatedDepartureDateTime
-				+ ", estimatedArrivalDateTime=" + estimatedArrivalDateTime + ", departureDateTime=" + departureDateTime
-				+ ", arrivalDateTime=" + arrivalDateTime + ", crew=" + crew + ", seats=" + seats + "]";
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
+	}
+
+	public Airplane getFlightEquipment() {
+		return flightEquipment;
+	}
+
+	public void setFlightEquipment(Airplane flightEquipment) {
+		this.flightEquipment = flightEquipment;
+	}
+
+	public Set<Employee> getCrew() {
+		return crew;
+	}
+
+	public void setCrew(Set<Employee> crew) {
+		this.crew = crew;
 	}
 	
 }

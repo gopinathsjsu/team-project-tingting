@@ -6,6 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Route {
@@ -23,8 +28,6 @@ public class Route {
 	
 	private boolean isActive;
 	
-	public Route( ) { }
-
 	public Route(String routeCode, Airport originAirport, Airport destinationAirport, double distance, boolean isActive) {
 
 		this.routeCode = routeCode;
@@ -73,12 +76,6 @@ public class Route {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
-	}
-
-	@Override
-	public String toString() {
-		return "Route [routeCode=" + routeCode + ", originAirport=" + originAirport + ", destinationAirport="
-				+ destinationAirport + ", distance=" + distance + ", isActive=" + isActive + "]";
 	}
 	
 }

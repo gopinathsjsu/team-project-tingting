@@ -7,13 +7,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
-public class Customer extends Person {
+public class Customer extends User {
 	
 	private String accountnumber;
-	
-	private String password;
 	
 	private String identification;
 	
@@ -25,14 +28,11 @@ public class Customer extends Person {
 	@OneToMany( mappedBy = "customer" )
 	private Set<Ticket> ticket;
 	
-	public Customer (  ) { super(); }
-
 	public Customer(String accountnumber, String password, String identification, String identificationType) {
 		
 		super();
 		
 		this.accountnumber = accountnumber;
-		this.password = password;
 		this.identification = identification;
 		this.identificationType = identificationType;
 		
@@ -44,14 +44,6 @@ public class Customer extends Person {
 
 	public void setAccountnumber(String accountnumber) {
 		this.accountnumber = accountnumber;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getIdentification() {
@@ -69,7 +61,7 @@ public class Customer extends Person {
 	public void setIdentificationType(String identificationType) {
 		this.identificationType = identificationType;
 	}
-	
+
 	public RewardAccount getRewardAccount() {
 		return rewardAccount;
 	}
@@ -78,10 +70,12 @@ public class Customer extends Person {
 		this.rewardAccount = rewardAccount;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [accountnumber=" + accountnumber + ", password=" + password + ", identification="
-				+ identification + ", identificationType=" + identificationType + "]";
+	public Set<Ticket> getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Set<Ticket> ticket) {
+		this.ticket = ticket;
 	}
 
 }

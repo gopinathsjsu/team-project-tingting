@@ -10,6 +10,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Airport {
@@ -34,8 +39,6 @@ public class Airport {
 	@OneToMany
 	private Set<Route> routesDestination;
 	
-	public Airport( ) { }
-
 	public Airport(String airportCode, String name, String city, String state, String country) {
 		
 		this.airportCode = airportCode;
@@ -86,10 +89,20 @@ public class Airport {
 		this.country = country;
 	}
 
-	@Override
-	public String toString() {
-		return "Airport [airportCode=" + airportCode + ", name=" + name + ", city=" + city + ", state=" + state
-				+ ", country=" + country + "]";
+	public Set<Route> getRoutesOrigin() {
+		return routesOrigin;
+	}
+
+	public void setRoutesOrigin(Set<Route> routesOrigin) {
+		this.routesOrigin = routesOrigin;
+	}
+
+	public Set<Route> getRoutesDestination() {
+		return routesDestination;
+	}
+
+	public void setRoutesDestination(Set<Route> routesDestination) {
+		this.routesDestination = routesDestination;
 	}
 	
 }

@@ -42,7 +42,7 @@ public class EmployeeService {
 	
 	public void updateEmployee( Employee employee ) {
 		
-		checkEmployeeCode( employee.getPersonId() );
+		checkEmployeeCode( employee.getUserId() );
 		
 		employeeRepository.save(employee);
 		

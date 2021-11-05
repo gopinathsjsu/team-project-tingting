@@ -10,6 +10,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Ticket {
@@ -47,8 +52,6 @@ public class Ticket {
 	
 	private String passengerCountry;
 	
-	public Ticket() { }
-
 	public Ticket(Customer customer, Seat seat, Long eTicketNumber, String passengerFirstName, String passengerLastName,
 			String passengerIdentification, String passengerTypeOfIdentification, String passengerPhoneNumber,
 			String passengerAddress1, String passengerAddress2, String passengerCity, String passengerState,
@@ -180,17 +183,6 @@ public class Ticket {
 
 	public void setPassengerCountry(String passengerCountry) {
 		this.passengerCountry = passengerCountry;
-	}
-
-	@Override
-	public String toString() {
-		return "Ticket [ticketId=" + ticketId + ", customer=" + customer + ", seat=" + seat + ", eTicketNumber="
-				+ eTicketNumber + ", passengerFirstName=" + passengerFirstName + ", passengerLastName="
-				+ passengerLastName + ", passengerIdentification=" + passengerIdentification
-				+ ", passengerTypeOfIdentification=" + passengerTypeOfIdentification + ", passengerPhoneNumber="
-				+ passengerPhoneNumber + ", passengerAddress1=" + passengerAddress1 + ", passengerAddress2="
-				+ passengerAddress2 + ", passengerCity=" + passengerCity + ", passengerState=" + passengerState
-				+ ", passengerCountry=" + passengerCountry + "]";
 	}
 	
 }

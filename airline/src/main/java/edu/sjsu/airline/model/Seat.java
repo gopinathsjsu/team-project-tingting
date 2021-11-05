@@ -10,16 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Seat {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seat_generator")
+	@SequenceGenerator(name="seat_generator", sequenceName = "seat_seq", allocationSize=1)
 	private Long seatId;
 	
 	@JsonIgnore
@@ -43,8 +50,6 @@ public class Seat {
 	private double price;
 	
 	private double milesReward;
-	
-	public Seat( ) { }
 	
 	public Seat(Flight flight, SeatStatus seatStatus, CabinClass cabinClass, int seatNumber, char seatPosition, double price, double milesReward) {
 	
@@ -72,6 +77,14 @@ public class Seat {
 
 	public void setFlight(Flight flight) {
 		this.flight = flight;
+	}
+
+	public Ticket getTicket() {
+		return ticket;
+	}
+
+	public void setTicket(Ticket ticket) {
+		this.ticket = ticket;
 	}
 
 	public SeatStatus getSeatStatus() {
@@ -120,13 +133,6 @@ public class Seat {
 
 	public void setMilesReward(double milesReward) {
 		this.milesReward = milesReward;
-	}
-
-	@Override
-	public String toString() {
-		return "Seat [seatId=" + seatId + ", flight=" + flight + ", seatStatus=" + seatStatus + ", cabinClass="
-				+ cabinClass + ", seatNumber=" + seatNumber + ", seatPosition=" + seatPosition + ", price=" + price
-				+ ", milesReward=" + milesReward + "]";
 	}
 	
 }

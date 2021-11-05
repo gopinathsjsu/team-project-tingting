@@ -4,14 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
 public class Airplane {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "airplane_generator")
+	@SequenceGenerator(name="airplane_generator", sequenceName = "airplane_seq", allocationSize=1)
 	private Long airplaneId;
 	
 	private String airplaneCode;
@@ -22,8 +29,6 @@ public class Airplane {
 	
 	private int numberOfSeats;
 	
-	public Airplane() {}
-
 	public Airplane(String airplaneCode, String model, String manufacture, int numberOfSeats) {
 		
 		this.airplaneCode = airplaneCode;
@@ -71,12 +76,6 @@ public class Airplane {
 
 	public void setNumberOfSeats(int numberOfSeats) {
 		this.numberOfSeats = numberOfSeats;
-	}
-
-	@Override
-	public String toString() {
-		return "Airplane [airplaneId=" + airplaneId + ", airplaneCode=" + airplaneCode + ", model=" + model
-				+ ", manufacture=" + manufacture + ", numberOfSeats=" + numberOfSeats + "]";
 	}
 	
 }

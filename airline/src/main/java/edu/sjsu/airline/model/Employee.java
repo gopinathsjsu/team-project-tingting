@@ -12,9 +12,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor
+@ToString
 @Entity
 @Table
-public class Employee extends Person {
+public class Employee extends User {
 
 	private LocalDate hiredDate;
 	
@@ -25,8 +30,6 @@ public class Employee extends Person {
 	@ManyToMany( mappedBy = "crew" )
 	private Set<Flight> flights = new HashSet<>();
 	
-	public Employee (  ) { super(); }
-
 	public Employee(LocalDate hiredDate, Position position) {
 		
 		super();
@@ -52,10 +55,12 @@ public class Employee extends Person {
 		this.position = position;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [hiredDate=" + hiredDate + ", position=" + position + "]";
+	public Set<Flight> getFlights() {
+		return flights;
+	}
+
+	public void setFlights(Set<Flight> flights) {
+		this.flights = flights;
 	}
 	
 }
-
