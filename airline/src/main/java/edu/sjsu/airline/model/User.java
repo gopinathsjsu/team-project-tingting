@@ -11,9 +11,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.ToString;
-
-@ToString
 @Entity
 @Table
 @Inheritance( strategy = InheritanceType.JOINED )
@@ -204,5 +201,14 @@ public class User {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
+				+ lastName + ", dataOfBith=" + dataOfBith + ", address1=" + address1 + ", address2=" + address2
+				+ ", city=" + city + ", state=" + state + ", country=" + country + ", zipCode=" + zipCode + ", email="
+				+ email + ", phoneNumber=" + phoneNumber + ", password=" + password + ", active=" + active + ", roles="
+				+ roles + "]";
+	}
     
 }

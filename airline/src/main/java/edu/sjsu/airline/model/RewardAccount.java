@@ -1,6 +1,5 @@
 package edu.sjsu.airline.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,11 +8,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class RewardAccount {
@@ -27,12 +23,15 @@ public class RewardAccount {
 	
 	private double balance;
 	
-	@OneToOne(cascade = CascadeType.ALL )
+	@JsonIgnore
+	@OneToOne
 	private Customer customer;
 	
-	public RewardAccount(Long rewardAccountId, String accountnumber, double balance) {
+	public RewardAccount( ) { }
+	
+	public RewardAccount(Customer customer, String accountnumber, double balance) {
 		
-		this.rewardAccountId = rewardAccountId;
+		this.customer = customer;
 		this.accountnumber = accountnumber;
 		this.balance = balance;
 		
@@ -68,6 +67,12 @@ public class RewardAccount {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	@Override
+	public String toString() {
+		return "RewardAccount [rewardAccountId=" + rewardAccountId + ", accountnumber=" + accountnumber + ", balance="
+				+ balance + ", customer=" + customer + "]";
 	}
 	
 }

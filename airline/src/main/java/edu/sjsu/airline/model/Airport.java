@@ -10,11 +10,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Airport {
@@ -23,13 +18,13 @@ public class Airport {
 	@Column( unique = true)
 	private String airportCode;
 	
-	private String name;
+	private String airportName;
 	
-	private String city;
+	private String airportCity;
 	
-	private String state;
+	private String airportState;
 	
-	private String country;
+	private String airportCountry;
 	
 	@JsonIgnore
 	@OneToMany
@@ -39,13 +34,15 @@ public class Airport {
 	@OneToMany
 	private Set<Route> routesDestination;
 	
+	public Airport( ) { }  
+	
 	public Airport(String airportCode, String name, String city, String state, String country) {
 		
 		this.airportCode = airportCode;
-		this.name = name;
-		this.city = city;
-		this.state = state;
-		this.country = country;
+		this.airportName = name;
+		this.airportCity = city;
+		this.airportState = state;
+		this.airportCountry = country;
 		
 	}
 
@@ -58,35 +55,35 @@ public class Airport {
 	}
 
 	public String getName() {
-		return name;
+		return airportName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.airportName = name;
 	}
 
 	public String getCity() {
-		return city;
+		return airportCity;
 	}
 
 	public void setCity(String city) {
-		this.city = city;
+		this.airportCity = city;
 	}
 
 	public String getState() {
-		return state;
+		return airportState;
 	}
 
 	public void setState(String state) {
-		this.state = state;
+		this.airportState = state;
 	}
 
 	public String getCountry() {
-		return country;
+		return airportCountry;
 	}
 
 	public void setCountry(String country) {
-		this.country = country;
+		this.airportCountry = country;
 	}
 
 	public Set<Route> getRoutesOrigin() {
@@ -103,6 +100,13 @@ public class Airport {
 
 	public void setRoutesDestination(Set<Route> routesDestination) {
 		this.routesDestination = routesDestination;
+	}
+
+	@Override
+	public String toString() {
+		return "Airport [airportCode=" + airportCode + ", airportName=" + airportName + ", airportCity=" + airportCity
+				+ ", airportState=" + airportState + ", airportCountry=" + airportCountry + ", routesOrigin="
+				+ routesOrigin + ", routesDestination=" + routesDestination + "]";
 	}
 	
 }

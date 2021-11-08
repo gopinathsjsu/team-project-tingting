@@ -13,11 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Flight {
@@ -48,7 +43,17 @@ public class Flight {
 	
 	@OneToMany(mappedBy = "flight" )
 	private Set<Seat> seats;
+	
+	public Flight( ) {  }
 
+	public Flight(int flightNumber, LocalDateTime estimatedDepartureDateTime, LocalDateTime estimatedArrivalDateTime ) {
+		
+		this.flightNumber = flightNumber;
+		this.estimatedDepartureDateTime = estimatedDepartureDateTime;
+		this.estimatedArrivalDateTime = estimatedArrivalDateTime;
+
+	}
+	
 	public Flight(int flightNumber, Route route, Airplane flightEquipment, LocalDateTime estimatedDepartureDateTime,
 			LocalDateTime estimatedArrivalDateTime, LocalDateTime departureDateTime, LocalDateTime arrivalDateTime,
 			Set<Employee> crew, Set<Seat> seats) {
@@ -143,6 +148,14 @@ public class Flight {
 
 	public void setCrew(Set<Employee> crew) {
 		this.crew = crew;
+	}
+
+	@Override
+	public String toString() {
+		return "Flight [flightId=" + flightId + ", flightNumber=" + flightNumber + ", route=" + route
+				+ ", flightEquipment=" + flightEquipment + ", estimatedDepartureDateTime=" + estimatedDepartureDateTime
+				+ ", estimatedArrivalDateTime=" + estimatedArrivalDateTime + ", departureDateTime=" + departureDateTime
+				+ ", arrivalDateTime=" + arrivalDateTime + ", crew=" + crew + ", seats=" + seats + "]";
 	}
 	
 }

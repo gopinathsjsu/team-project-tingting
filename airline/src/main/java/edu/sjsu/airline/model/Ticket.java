@@ -1,5 +1,7 @@
 package edu.sjsu.airline.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,11 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Ticket {
@@ -24,52 +23,39 @@ public class Ticket {
 	@SequenceGenerator(name="ticket_generator", sequenceName = "ticket_seq", allocationSize=1)
 	private Long ticketId;
 	
-	@ManyToOne( cascade = CascadeType.ALL )
-	private Customer customer;
+	@JsonIgnore
+	@ManyToOne
+	private Reservation reservation;
 	
-	@OneToOne( cascade = CascadeType.ALL )
+	@OneToOne( cascade = CascadeType.MERGE )
 	private Seat seat;
 	
 	private Long eTicketNumber;
 	
 	private String passengerFirstName;
 	
+	private String passengerMiddleName;
+	
 	private String passengerLastName;
 	
-	private String passengerIdentification;
+	private String passengerSuffix;
 	
-	private String passengerTypeOfIdentification;
+	private LocalDate dataOfBirth;
 	
 	private String passengerPhoneNumber;
 	
-	private String passengerAddress1;
-	
-	private String passengerAddress2;
-	
-	private String passengerCity;
-	
-	private String passengerState;
-	
-	private String passengerCountry;
-	
-	public Ticket(Customer customer, Seat seat, Long eTicketNumber, String passengerFirstName, String passengerLastName,
-			String passengerIdentification, String passengerTypeOfIdentification, String passengerPhoneNumber,
-			String passengerAddress1, String passengerAddress2, String passengerCity, String passengerState,
-			String passengerCountry) {
+	public Ticket( ) {  }
+
+	public Ticket( Reservation reservation, String passengerFirstName, String passengerMiddleName, String passengerLastName,
+			String passengerSuffix, LocalDate dataOfBirth, String passengerPhoneNumber) {
 		
-		this.customer = customer;
-		this.seat = seat;
-		this.eTicketNumber = eTicketNumber;
+		this.reservation = reservation;
 		this.passengerFirstName = passengerFirstName;
+		this.passengerMiddleName = passengerMiddleName;
 		this.passengerLastName = passengerLastName;
-		this.passengerIdentification = passengerIdentification;
-		this.passengerTypeOfIdentification = passengerTypeOfIdentification;
+		this.passengerSuffix = passengerSuffix;
+		this.dataOfBirth = dataOfBirth;
 		this.passengerPhoneNumber = passengerPhoneNumber;
-		this.passengerAddress1 = passengerAddress1;
-		this.passengerAddress2 = passengerAddress2;
-		this.passengerCity = passengerCity;
-		this.passengerState = passengerState;
-		this.passengerCountry = passengerCountry;
 		
 	}
 
@@ -81,12 +67,12 @@ public class Ticket {
 		this.ticketId = ticketId;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Reservation getReservation() {
+		return reservation;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setReservation(Reservation reservation) {
+		this.reservation = reservation;
 	}
 
 	public Seat getSeat() {
@@ -113,6 +99,14 @@ public class Ticket {
 		this.passengerFirstName = passengerFirstName;
 	}
 
+	public String getPassengerMiddleName() {
+		return passengerMiddleName;
+	}
+
+	public void setPassengerMiddleName(String passengerMiddleName) {
+		this.passengerMiddleName = passengerMiddleName;
+	}
+
 	public String getPassengerLastName() {
 		return passengerLastName;
 	}
@@ -121,20 +115,20 @@ public class Ticket {
 		this.passengerLastName = passengerLastName;
 	}
 
-	public String getPassengerIdentification() {
-		return passengerIdentification;
+	public String getPassengerSuffix() {
+		return passengerSuffix;
 	}
 
-	public void setPassengerIdentification(String passengerIdentification) {
-		this.passengerIdentification = passengerIdentification;
+	public void setPassengerSuffix(String passengerSuffix) {
+		this.passengerSuffix = passengerSuffix;
 	}
 
-	public String getPassengerTypeOfIdentification() {
-		return passengerTypeOfIdentification;
+	public LocalDate getDataOfBirth() {
+		return dataOfBirth;
 	}
 
-	public void setPassengerTypeOfIdentification(String passengerTypeOfIdentification) {
-		this.passengerTypeOfIdentification = passengerTypeOfIdentification;
+	public void setDataOfBirth(LocalDate dataOfBirth) {
+		this.dataOfBirth = dataOfBirth;
 	}
 
 	public String getPassengerPhoneNumber() {
@@ -145,44 +139,13 @@ public class Ticket {
 		this.passengerPhoneNumber = passengerPhoneNumber;
 	}
 
-	public String getPassengerAddress1() {
-		return passengerAddress1;
+	@Override
+	public String toString() {
+		return "Ticket [ticketId=" + ticketId + ", reservation=" + reservation + ", seat="
+				+ seat + ", eTicketNumber=" + eTicketNumber + ", passengerFirstName=" + passengerFirstName
+				+ ", passengerMiddleName=" + passengerMiddleName + ", passengerLastName=" + passengerLastName
+				+ ", passengerSuffix=" + passengerSuffix + ", dataOfBirth=" + dataOfBirth + ", passengerPhoneNumber="
+				+ passengerPhoneNumber + "]";
 	}
 
-	public void setPassengerAddress1(String passengerAddress1) {
-		this.passengerAddress1 = passengerAddress1;
-	}
-
-	public String getPassengerAddress2() {
-		return passengerAddress2;
-	}
-
-	public void setPassengerAddress2(String passengerAddress2) {
-		this.passengerAddress2 = passengerAddress2;
-	}
-
-	public String getPassengerCity() {
-		return passengerCity;
-	}
-
-	public void setPassengerCity(String passengerCity) {
-		this.passengerCity = passengerCity;
-	}
-
-	public String getPassengerState() {
-		return passengerState;
-	}
-
-	public void setPassengerState(String passengerState) {
-		this.passengerState = passengerState;
-	}
-
-	public String getPassengerCountry() {
-		return passengerCountry;
-	}
-
-	public void setPassengerCountry(String passengerCountry) {
-		this.passengerCountry = passengerCountry;
-	}
-	
 }

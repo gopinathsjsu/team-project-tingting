@@ -12,11 +12,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Employee extends User {
@@ -29,6 +24,8 @@ public class Employee extends User {
 	@JsonIgnore
 	@ManyToMany( mappedBy = "crew" )
 	private Set<Flight> flights = new HashSet<>();
+	
+	public Employee( ) { super(); }
 	
 	public Employee(LocalDate hiredDate, Position position) {
 		
@@ -61,6 +58,11 @@ public class Employee extends User {
 
 	public void setFlights(Set<Flight> flights) {
 		this.flights = flights;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [hiredDate=" + hiredDate + ", position=" + position + ", flights=" + flights + "]";
 	}
 	
 }

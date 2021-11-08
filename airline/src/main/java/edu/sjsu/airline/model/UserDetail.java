@@ -5,15 +5,18 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/*
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+*/
 
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
-public class UserDetail implements UserDetails {
+public class UserDetail /*implements UserDetails*/ {
 	
+	/*
 	private String userName;
 	
 	private String password;
@@ -65,5 +68,5 @@ public class UserDetail implements UserDetails {
     public boolean isEnabled() {
         return active;
     }
-
+*/
 }

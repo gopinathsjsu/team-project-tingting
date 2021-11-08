@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.sjsu.airline.model.Flight;
 import edu.sjsu.airline.model.Seat;
-import edu.sjsu.airline.service.FlightService;
 import edu.sjsu.airline.service.SeatService;
 
 @RestController
@@ -23,9 +21,6 @@ public class SeatController {
 	
 	@Autowired
 	private SeatService seatService;
-	
-	@Autowired
-	public FlightService flightService;
 	
 	@GetMapping
 	public List<Seat> getSeats() {
@@ -38,6 +33,13 @@ public class SeatController {
 	public Seat getSeat( @PathVariable("seatId") Long seatId ) {
 		
 		return seatService.getBySeatId( seatId );
+		
+	}
+	
+	@GetMapping( path = "/flight/{flightId}" )
+	public List<Seat> getSeatByFlight( @PathVariable Long flightId ) {
+		
+		return seatService.getByFlightId( flightId );
 		
 	}
 	
@@ -55,6 +57,7 @@ public class SeatController {
 		
 	}
 	
+	/*
 	@PutMapping( path = "/{seatId}/flight/{flightId}" )
 	public void assignAirplaneToSeat( @PathVariable Long seatId, @PathVariable Long flightId ) {
 		
@@ -67,6 +70,7 @@ public class SeatController {
 		seatService.updateSeat( seat );
 		
 	}
+	*/
 	
 	@DeleteMapping( path = "/{seatId}" )
 	public void deleteSeat( @PathVariable("seatId") Long seatId ) {
@@ -74,6 +78,5 @@ public class SeatController {
 		seatService.deleteSeat( seatId );
 		
 	}
-
 
 }

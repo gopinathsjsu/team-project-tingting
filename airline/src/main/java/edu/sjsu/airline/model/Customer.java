@@ -2,48 +2,35 @@ package edu.sjsu.airline.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Customer extends User {
-	
-	private String accountnumber;
 	
 	private String identification;
 	
 	private String identificationType;
 	
-	@OneToOne( mappedBy = "customer" )
+	@OneToOne( mappedBy = "customer", cascade = CascadeType.ALL )
 	private RewardAccount rewardAccount;
 	
-	@OneToMany( mappedBy = "customer" )
-	private Set<Ticket> ticket;
+	@OneToMany(mappedBy = "customer" )
+	private Set<Reservation> reservartions;
 	
-	public Customer(String accountnumber, String password, String identification, String identificationType) {
+	public Customer( ) { super(); }
+		
+	public Customer( String identification, String identificationType) {
 		
 		super();
 		
-		this.accountnumber = accountnumber;
 		this.identification = identification;
 		this.identificationType = identificationType;
 		
-	}
-
-	public String getAccountnumber() {
-		return accountnumber;
-	}
-
-	public void setAccountnumber(String accountnumber) {
-		this.accountnumber = accountnumber;
 	}
 
 	public String getIdentification() {
@@ -70,12 +57,18 @@ public class Customer extends User {
 		this.rewardAccount = rewardAccount;
 	}
 
-	public Set<Ticket> getTicket() {
-		return ticket;
+	public Set<Reservation> getReservartions() {
+		return reservartions;
 	}
 
-	public void setTicket(Set<Ticket> ticket) {
-		this.ticket = ticket;
+	public void setReservartions(Set<Reservation> reservartions) {
+		this.reservartions = reservartions;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [identification=" + identification + ", identificationType=" + identificationType 
+				+ ", rewardAccount=" + rewardAccount + ", reservartions=" + reservartions + "]";
 	}
 
 }

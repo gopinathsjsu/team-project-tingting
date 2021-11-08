@@ -2,6 +2,7 @@ package edu.sjsu.airline.service;
 
 import java.util.Optional;
 
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,10 +12,11 @@ import org.springframework.stereotype.Service;
 import edu.sjsu.airline.model.User;
 import edu.sjsu.airline.model.UserDetail;
 import edu.sjsu.airline.repository.CustomerRepository;
+*/
 
-@Service
-public class UserService implements UserDetailsService {
-	
+//@Service
+public class UserService /*implements UserDetailsService*/ {
+	/*
 	@Autowired
     CustomerRepository customerRepository;
 
@@ -32,5 +34,7 @@ public class UserService implements UserDetailsService {
         return user.map( UserDetail::new ).get();
 		
 	}
+	
+	*/
 
 }

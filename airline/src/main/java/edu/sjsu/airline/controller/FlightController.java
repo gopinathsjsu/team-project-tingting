@@ -12,14 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.sjsu.airline.model.Airplane;
-import edu.sjsu.airline.model.Employee;
 import edu.sjsu.airline.model.Flight;
-import edu.sjsu.airline.model.Route;
-import edu.sjsu.airline.service.AirplaneService;
-import edu.sjsu.airline.service.EmployeeService;
+import edu.sjsu.airline.model.NewFlightRequest;
+import edu.sjsu.airline.model.SearchFlight;
 import edu.sjsu.airline.service.FlightService;
-import edu.sjsu.airline.service.RouteService;
 
 @RestController
 @RequestMapping(path = "/api/v1/flight")
@@ -27,15 +23,6 @@ public class FlightController {
 	
 	@Autowired
 	private FlightService flightService;
-	
-	@Autowired
-	public AirplaneService airplaneService;
-	
-	@Autowired
-	public RouteService routeService;
-	
-	@Autowired
-	public EmployeeService employeeService;
 	
 	@GetMapping
 	public List<Flight> getFlights() {
@@ -51,20 +38,28 @@ public class FlightController {
 		
 	}
 	
-	@PostMapping
-	public void addNewFlight( @RequestBody Flight flight ) {
+	@GetMapping( path = "/find" )
+	public List<Flight> findAvaiableFlights( @RequestBody SearchFlight searchFlight ) {
 		
-		flightService.addFlight( flight );
+		return flightService.findAvaiableFlights( searchFlight );
+		
+	}
+	
+	@PostMapping
+	public void addNewFlight( @RequestBody NewFlightRequest newFlightRequest ) {
+		
+		flightService.addFlight( newFlightRequest );
 		
 	}
 	
 	@PutMapping
-	public void updateFlight( @RequestBody Flight flight ) {
+	public void updateFlight( @RequestBody NewFlightRequest newFlightRequest ) {
 		
-		flightService.updateFlight( flight );
+		flightService.updateFlight( newFlightRequest );
 		
 	}
 	
+	/*
 	@PutMapping( path = "/{flightId}/route/{routeCode}" )
 	public void assignRouteToFlight( @PathVariable Long flightId, @PathVariable String routeCode ) {
 		
@@ -90,17 +85,12 @@ public class FlightController {
 		flightService.updateFlight( flight );
 		
 	}
+	*/
 	
 	@PutMapping( path = "/{flightId}/employee/{employeeId}" )
 	public void assignEmployeeToFlight( @PathVariable Long flightId, @PathVariable Long employeeId ) {
 		
-		Flight flight = flightService.getByFlightId(flightId);
-		
-		Employee employee = employeeService.getByEmployeeId(employeeId);
-		
-		flight.getCrew().add(employee);
-		
-		flightService.updateFlight( flight );
+		flightService.assignEmployeeToFlight( flightId, employeeId );
 		
 	}
 	

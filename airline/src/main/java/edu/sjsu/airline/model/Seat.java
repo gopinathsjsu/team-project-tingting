@@ -12,13 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@NoArgsConstructor
 @ToString
 @Entity
 @Table
@@ -30,11 +29,12 @@ public class Seat {
 	private Long seatId;
 	
 	@JsonIgnore
-	@ManyToOne( cascade = CascadeType.ALL )
+	@ManyToOne( cascade = CascadeType.MERGE )
 	@JoinColumn( name = "flight_id" )
 	private Flight flight;
 	
-	@OneToOne( mappedBy = "seat" )
+	@JsonIgnore
+	@OneToOne
 	private Ticket ticket;
 	
 	@Enumerated( EnumType.STRING )
@@ -47,20 +47,22 @@ public class Seat {
 	
 	private char seatPosition;
 	
-	private double price;
+	private double seatPrice;
 	
-	private double milesReward;
+	@Transient
+	private Long flightId;
 	
-	public Seat(Flight flight, SeatStatus seatStatus, CabinClass cabinClass, int seatNumber, char seatPosition, double price, double milesReward) {
+	public Seat( ) { }
+	
+	public Seat(Flight flight, SeatStatus seatStatus, CabinClass cabinClass, int seatNumber, char seatPosition, double price ) {
 	
 		this.flight = flight;
 		this.seatStatus = seatStatus;
 		this.cabinClass = cabinClass;
 		this.seatNumber = seatNumber;
 		this.seatPosition = seatPosition;
-		this.price = price;
-		this.milesReward = milesReward;
-	
+		this.seatPrice = price;
+		
 	}
 
 	public Long getSeatId() {
@@ -120,19 +122,20 @@ public class Seat {
 	}
 
 	public double getPrice() {
-		return price;
+		return seatPrice;
 	}
 
 	public void setPrice(double price) {
-		this.price = price;
+		this.seatPrice = price;
 	}
 
-	public double getMilesReward() {
-		return milesReward;
+	public Long getFlightId() {
+		
+		return flight == null ? flightId : flight.getFlightId() ;
 	}
 
-	public void setMilesReward(double milesReward) {
-		this.milesReward = milesReward;
+	public void setFlightId(Long flightId) {
+		this.flightId = flightId;
 	}
 	
 }

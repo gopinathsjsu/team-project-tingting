@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.sjsu.airline.model.Flight;
 import edu.sjsu.airline.model.Seat;
 import edu.sjsu.airline.repository.SeatRepository;
 
@@ -13,6 +14,9 @@ public class SeatService {
 	
 	@Autowired
 	private SeatRepository seatRepository;
+	
+	@Autowired
+	private FlightService flightService;
 	
 	public List<Seat> getAll( ) {
 		
@@ -28,7 +32,17 @@ public class SeatService {
 		
 	}
 	
+	public List<Seat> getByFlightId( Long flightId ) {
+		
+		return seatRepository.findByFlightId( flightId );
+		
+	}
+	
 	public void addSeat( Seat newSeat ) {
+		
+		Flight flight = flightService.getByFlightId( newSeat.getFlightId() );
+		
+		newSeat.setFlight(flight);
 		
 		seatRepository.save(newSeat);
 		

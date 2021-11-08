@@ -7,11 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Airplane {
@@ -23,17 +18,19 @@ public class Airplane {
 	
 	private String airplaneCode;
 	
-	private String model;
+	private String airplaneModel;
 	
-	private String manufacture;
+	private String airplaneManufacture;
 	
 	private int numberOfSeats;
 	
-	public Airplane(String airplaneCode, String model, String manufacture, int numberOfSeats) {
+	public Airplane( ) { }
+	
+	public Airplane(String airplaneCode, String airplaneModel, String airplaneManufacture, int numberOfSeats) {
 		
 		this.airplaneCode = airplaneCode;
-		this.model = model;
-		this.manufacture = manufacture;
+		this.airplaneModel = airplaneModel;
+		this.airplaneManufacture = airplaneManufacture;
 		this.numberOfSeats = numberOfSeats;
 		
 	}
@@ -54,20 +51,20 @@ public class Airplane {
 		this.airplaneCode = airplaneCode;
 	}
 
-	public String getModel() {
-		return model;
+	public String getAirplaneModel() {
+		return airplaneModel;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+	public void setAirplaneModel(String airplaneModel) {
+		this.airplaneModel = airplaneModel;
 	}
 
-	public String getManufacture() {
-		return manufacture;
+	public String getAirplaneManufacture() {
+		return airplaneManufacture;
 	}
 
-	public void setManufacture(String manufacture) {
-		this.manufacture = manufacture;
+	public void setAirplaneManufacture(String airplaneManufacture) {
+		this.airplaneManufacture = airplaneManufacture;
 	}
 
 	public int getNumberOfSeats() {
@@ -76,6 +73,13 @@ public class Airplane {
 
 	public void setNumberOfSeats(int numberOfSeats) {
 		this.numberOfSeats = numberOfSeats;
+	}
+
+	@Override
+	public String toString() {
+		return "Airplane [airplaneId=" + airplaneId + ", airplaneCode=" + airplaneCode + ", airplaneModel="
+				+ airplaneModel + ", airplaneManufacture=" + airplaneManufacture + ", numberOfSeats=" + numberOfSeats
+				+ "]";
 	}
 	
 }

@@ -6,11 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@NoArgsConstructor
-@ToString
 @Entity
 @Table
 public class Route {
@@ -24,16 +19,18 @@ public class Route {
 	@ManyToOne( cascade = CascadeType.ALL )
 	private Airport destinationAirport;
 	
-	private double distance;
+	private double routeDistance;
 	
 	private boolean isActive;
+	
+	public Route( ) { }
 	
 	public Route(String routeCode, Airport originAirport, Airport destinationAirport, double distance, boolean isActive) {
 
 		this.routeCode = routeCode;
 		this.originAirport = originAirport;
 		this.destinationAirport = destinationAirport;
-		this.distance = distance;
+		this.routeDistance = distance;
 		this.isActive = isActive;
 		
 	}
@@ -63,11 +60,11 @@ public class Route {
 	}
 
 	public double getDistance() {
-		return distance;
+		return routeDistance;
 	}
 
 	public void setDistance(double distance) {
-		this.distance = distance;
+		this.routeDistance = distance;
 	}
 
 	public boolean isActive() {

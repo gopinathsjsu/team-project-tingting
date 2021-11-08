@@ -6,17 +6,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.sjsu.airline.model.Customer;
+import edu.sjsu.airline.model.RewardAccount;
 import edu.sjsu.airline.repository.CustomerRepository;
+import edu.sjsu.airline.repository.RewardAccountRepository;
 
 @Service
 public class CustomerService {
 	
 	private final CustomerRepository customerRepository;
+	private final RewardAccountRepository rewardAccountRepository;
 	
 	@Autowired
-	public CustomerService( CustomerRepository customerRepository ) {
+	public CustomerService( CustomerRepository customerRepository, RewardAccountRepository rewardAccountRepository ) {
 		
 		this.customerRepository =  customerRepository;
+		this.rewardAccountRepository = rewardAccountRepository;
 		
 	}
 	
@@ -34,7 +38,23 @@ public class CustomerService {
 		
 	}
 	
+	public RewardAccount getRewardAccountByCustomerId( Long customerId ) {
+		
+		checkCustomerCode( customerId );
+		
+		return rewardAccountRepository.findByUserId( customerId ).get();
+		
+	}
+	
+	public void updateRewardAccount( RewardAccount rewardAccount ) {
+		
+		rewardAccountRepository.save( rewardAccount );
+		
+	}
+	
 	public void addCustomer( Customer newCustomer ) {
+		
+		newCustomer.setRewardAccount( new RewardAccount( newCustomer, "123456789", 0 ) );
 		
 		customerRepository.save(newCustomer);
 		
