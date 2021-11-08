@@ -13,17 +13,20 @@
 - XP Values: Simplicity
 
 
-• Team Member Name: Rodrigo
+• Team Member Name: Rodrigo Colaso
 
 - What tasks did I work on / complete?
-
+  - Understand the requirements/use case for the project;
+  - Start working on the class diagram to get a general idea from the system
+  
 - What am I planning to work on next?
+  Study how to implement an API using JAVA / Start the setup for the backend
 
 - What tasks are blocked waiting on another team member?
-
-- XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
-
-
+  - N/A
+  
+- XP Values: Feedback
+  - Checked with the others members what they are doing and give then feedback about my taks  
 
 • Team Member Name: Thai
 
