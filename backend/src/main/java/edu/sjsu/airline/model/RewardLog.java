@@ -1,5 +1,7 @@
 package edu.sjsu.airline.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,6 +32,8 @@ public class RewardLog {
 	
 	@Enumerated( EnumType.STRING )
 	private TypeOfTransaction typeOfTransaction;
+	
+	private LocalDateTime dateTime;
 
 	public RewardLog( ) { }
 			
@@ -88,6 +92,14 @@ public class RewardLog {
 
 	public void setTypeOfTransaction(TypeOfTransaction typeOfTransaction) {
 		this.typeOfTransaction = typeOfTransaction;
+	}
+	
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = LocalDateTime.now();
 	}
 
 	@Override

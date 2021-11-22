@@ -1,6 +1,7 @@
 package edu.sjsu.airline.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -43,6 +44,8 @@ public class Ticket {
 	private LocalDate dataOfBirth;
 	
 	private String passengerPhoneNumber;
+	
+	private LocalDateTime cancelDateTime;
 	
 	public Ticket( ) {  }
 
@@ -137,6 +140,14 @@ public class Ticket {
 
 	public void setPassengerPhoneNumber(String passengerPhoneNumber) {
 		this.passengerPhoneNumber = passengerPhoneNumber;
+	}
+	
+	public LocalDateTime getCancelDateTime() {
+		return cancelDateTime;
+	}
+
+	public void setCancelDateTime(LocalDateTime cancelDateTime) {
+		this.cancelDateTime = cancelDateTime;
 	}
 
 	@Override

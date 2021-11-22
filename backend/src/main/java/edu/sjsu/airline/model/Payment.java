@@ -1,5 +1,7 @@
 package edu.sjsu.airline.model;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,6 +52,8 @@ public class Payment {
 	private String billingPhoneNumber;
 	
 	private String billingEmail;
+	
+	private LocalDateTime cancelDateTime;
 	
 	public Payment( ) { }
 
@@ -202,6 +206,14 @@ public class Payment {
 
 	public void setBillingEmail(String billingEmail) {
 		this.billingEmail = billingEmail;
+	}
+	
+	public LocalDateTime getCancelDateTime() {
+		return cancelDateTime;
+	}
+
+	public void setCancelDateTime(LocalDateTime cancelDateTime) {
+		this.cancelDateTime = cancelDateTime;
 	}
 
 	@Override

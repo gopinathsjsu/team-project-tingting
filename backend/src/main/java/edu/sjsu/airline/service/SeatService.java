@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import edu.sjsu.airline.model.Flight;
 import edu.sjsu.airline.model.Seat;
+import edu.sjsu.airline.model.SeatStatus;
 import edu.sjsu.airline.repository.SeatRepository;
 
 @Service
@@ -61,6 +62,15 @@ public class SeatService {
 		checkSeatCode( seatId );
 	
 		seatRepository.deleteById(seatId);
+	
+	}
+	
+	public void cancelSeat( Seat seat ) {
+		
+		seat.setSeatStatus( SeatStatus.Avaiable );
+		seat.setTicket(null);
+	
+		seatRepository.save(seat);
 	
 	}
 	

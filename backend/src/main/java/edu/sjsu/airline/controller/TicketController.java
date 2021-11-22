@@ -56,5 +56,12 @@ public class TicketController {
 		ticketService.deleteTicket( ticketId );
 		
 	}
+	
+	@PutMapping( path = "cancel/{ticketId}" )
+	public void cancelTicket( @PathVariable("ticketId") Long ticketId ) {
+		
+		ticketService.cancelTicket( ticketId );
+		
+	}
 		
 }

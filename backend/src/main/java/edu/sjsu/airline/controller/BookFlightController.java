@@ -20,61 +20,61 @@ import edu.sjsu.airline.service.BookFlightService;
 public class BookFlightController {
 	
 	@Autowired
-	private BookFlightService shoppingCartService;
+	private BookFlightService bookFlightService;
 	
 	@PutMapping( path = "/customer/{userId}" )
 	public void assignCustomer( @PathVariable Long userId  ) { 
 		
-		shoppingCartService.assignCustomer( userId );
+		bookFlightService.assignCustomer( userId );
 		
 	}
 	
 	@PutMapping( path = "/departFlight/{flightId}" )
 	public void assignDepartingFlight( @PathVariable Long flightId ) {
 		
-		shoppingCartService.assignDepartingFlight( flightId );
+		bookFlightService.assignDepartingFlight( flightId );
 		
 	}
 	
 	@PutMapping( path = "/returnFlight/{flightId}" )
 	public void assignReturnFlight( @PathVariable Long flightId ) {
 		
-		shoppingCartService.assignReturnFlight( flightId );
+		bookFlightService.assignReturnFlight( flightId );
 		
 	}
 	
 	@PutMapping( path = "/traveler-info")
 	public void assignTravelersToTicket( @RequestBody List<Traveler> travelers ) {
 		
-		shoppingCartService.assignTravelersToTicket(travelers);
+		bookFlightService.assignTravelersToTicket(travelers);
 		
 	}
 	
 	@PutMapping( path = "/{travelerId}/departingSeat/{seatId}" )
 	public void assignDepartingSeat( @PathVariable int travelerId, @PathVariable Long seatId ) {
 		
-		shoppingCartService.assignSeatToTicket( travelerId, seatId, true );
+		bookFlightService.assignSeatToTicket( travelerId, seatId, true );
 		
 	}
 	
 	@PutMapping( path = "/{travelerId}/returningSeat/{seatId}" )
 	public void assignReturningSeat( @PathVariable int travelerId, @PathVariable Long seatId ) {
 		
-		shoppingCartService.assignSeatToTicket( travelerId, seatId, false );
+		bookFlightService.assignSeatToTicket( travelerId, seatId, false );
 		
 	}
 	
 	@PutMapping( path = "/checkout-flight" )
 	public void checkoutFlight( @RequestBody Payment payment ) {
 		
-		shoppingCartService.checkoutFlight(payment);
+		bookFlightService.checkoutFlight(payment);
 		
 	}
 	
 	@GetMapping
 	public List<Ticket> teste( ) {
 		
-		return shoppingCartService.getTickets( );
+		return bookFlightService.getTickets( );
 		
 	}
 	

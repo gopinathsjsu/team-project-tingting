@@ -1,7 +1,6 @@
 package edu.sjsu.airline.service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +14,17 @@ import edu.sjsu.airline.repository.ReservationRepository;
 @Service
 public class ReservationService {
 	
-	private final ReservationRepository reservationRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
 	
 	@Autowired
-	public ReservationService( ReservationRepository reservationRepository ) {
-		
-		this.reservationRepository = reservationRepository;
-		
-	}
+	private TicketService ticketService;
+	
+	@Autowired
+	private PaymentService paymentService;
+	
+	@Autowired
+	private RewardLogService rewardLogService;
 	
 	public List<Reservation> getAll( ) {
 		
@@ -62,10 +64,28 @@ public class ReservationService {
 	
 	public void cancelReservation( Long reservationId ) {
 		
-		if( checkReservationConstrain( reservationId ) ) {
+		checkReservationCode( reservationId );
 		
+		Reservation reservation =  getByReservationId(reservationId);
+		
+		if( checkReservationConstrain( reservation ) ) {
 			
+			LocalDateTime dateTime = LocalDateTime.now();
 		
+			for( Ticket ticket :  reservation.getTickets() ) {
+				
+				ticketService.cancelTicket( ticket, dateTime );
+				
+			}
+			
+			paymentService.cancelPayment( reservation.getPayment(), dateTime );
+			
+			reservation.setCanceledDate( dateTime );
+			
+			reservationRepository.save( reservation );
+			
+			rewardLogService.cancelPurchase( rewardLogService.getPurchaseLog( reservation.getReservationId() ), dateTime  );
+			
 		}	
 		
 	}
@@ -78,28 +98,28 @@ public class ReservationService {
 		
 	}
 	
-	private boolean checkReservationConstrain( Long reservationId ) {
+	private boolean checkReservationConstrain( Reservation reservation ) {
 		
-		checkReservationCode( reservationId );
-		
-		Reservation reservation =  getByReservationId(reservationId);
-		
-		ArrayList<Ticket> tickets = new ArrayList<>(reservation.getTickets()) ; 
-		
-		Flight flight = tickets.get(0).getSeat().getFlight();
-		
-		// Raise exception if the flight has already taken off 
-		if( flight.getDepartureDateTime() != null ) {
+		for( Ticket ticket :  reservation.getTickets() )
 			
-			throw new IllegalStateException("Flight " + flight.getFlightNumber() + " has already taken off.");
-		
-		// Raise exception if the customer wants cancel the reservation less than 48 hours for the flight
-		} else if( flight.getDepartureDateTime() == null && LocalDateTime.now().isAfter( flight.getEstimatedDepartureDateTime().minusHours(48) ) )
+			checkFlight( ticket.getSeat().getFlight() );
 			
-			throw new IllegalStateException("The deadline for canceling the reservation was " + flight.getFlightNumber() );
-		
 		return true;
 		
 	}
-
+	
+	private void checkFlight( Flight flight ) {
+		
+		// Raise exception if the flight has already taken off 
+		if( flight.getDepartureDateTime() != null ) {
+					
+			throw new IllegalStateException("Flight " + flight.getFlightNumber() + " has already taken off.");
+				
+		// Raise exception if the customer wants cancel the reservation less than 48 hours for the flight
+		} else if( flight.getDepartureDateTime() == null && LocalDateTime.now().isAfter( flight.getEstimatedDepartureDateTime().minusHours(48) ) )
+					
+			throw new IllegalStateException("The deadline for canceling the reservation was " + flight.getFlightNumber() );
+		
+	}
+	
 }

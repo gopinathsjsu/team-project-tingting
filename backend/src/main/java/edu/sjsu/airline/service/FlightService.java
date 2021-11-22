@@ -94,6 +94,8 @@ public class FlightService {
 	
 	}
 	
+	
+	
 	public List<Flight> findAvaiableFlights( SearchFlight searchFlight ) {
 		
 		String departingRoute = searchFlight.getOriginAirport() + "-" + searchFlight.getReturnAirport();

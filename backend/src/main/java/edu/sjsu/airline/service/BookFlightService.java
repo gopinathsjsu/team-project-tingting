@@ -51,19 +51,19 @@ public class BookFlightService {
 
 	public void assignCustomer(Long userId) {
 
-		reservation = new Reservation(LocalDateTime.now(), customerService.getByCustomerId(userId));
+		reservation = new Reservation( LocalDateTime.now(), customerService.getByCustomerId( userId ) );
 
 	}
 
 	public void assignDepartingFlight(Long flightId) {
 
-		departingFlight = flightService.getByFlightId(flightId);
+		departingFlight = flightService.getByFlightId( flightId );
 
 	}
 
 	public void assignReturnFlight(Long flightId) {
 
-		returningFlight = flightService.getByFlightId(flightId);
+		returningFlight = flightService.getByFlightId( flightId );
 
 	}
 
@@ -93,10 +93,19 @@ public class BookFlightService {
 
 			departingTickets.get(travelerId).setSeat(seatService.getBySeatId(flightId));
 
-		else
-
-			returningTickets.get(travelerId).setSeat(seatService.getBySeatId(flightId));
-
+		else {
+			
+			if( returningTickets == null ) {
+				
+				throw new IllegalStateException("Customer didn't choose a returning flight.");
+				
+			} else {
+				
+				returningTickets.get(travelerId).setSeat(seatService.getBySeatId(flightId));
+				
+			}
+			
+		}
 	}
 
 	public void checkoutFlight(Payment payment) {
@@ -159,6 +168,7 @@ public class BookFlightService {
 			purchaseLogSell.setReservation(reservation);
 			purchaseLogSell.setTypeOfTransaction(TypeOfTransaction.SELL);
 			purchaseLogSell.setMiles(payment.getTotalRewardPayment());
+			purchaseLogSell.setDateTime( LocalDateTime.now() );
 
 		}
 
@@ -173,6 +183,7 @@ public class BookFlightService {
 			purchaseLogBuy.setReservation(reservation);
 			purchaseLogBuy.setTypeOfTransaction(TypeOfTransaction.BUY);
 			purchaseLogBuy.setMiles(totalReward);
+			purchaseLogBuy.setDateTime( LocalDateTime.now() );
 
 		}
 
