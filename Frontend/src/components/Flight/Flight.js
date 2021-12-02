@@ -16,6 +16,10 @@ class Flight extends Component {
       passenger: 0,
       flights: [],
       error: null,
+
+      flightx: [{orderId: "1", name: "Joghn Doe" ,  fromLoc: "SFO",
+      toLoc: "LAX",
+      departDate: "12/19/20021", price: "342"}]
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,23 +28,23 @@ class Flight extends Component {
 
   handleChange(event) {
     this.setState({ searchValue: event.target.value });
-    fetch("http://localhost:3001")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response.json().then((data) => {
-          this.setState({ flights: data });
-          this.setState({ fromLoc: data.fromLoc });
-          this.setState({ toLoc: data.toLoc });
-          this.setState({ departTime: data.departTime });
-          this.setState({ arrivetTime: data.arrivetTime });
-          this.setState({ passenger: data.passenger });
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch("http://localhost:3001")
+    //   .then((response) => {
+    //     if (!response.ok) {
+    //       throw new Error(response.statusText);
+    //     }
+    //     return response.json().then((data) => {
+    //       this.setState({ flights: data });
+    //       this.setState({ fromLoc: data.fromLoc });
+    //       this.setState({ toLoc: data.toLoc });
+    //       this.setState({ departTime: data.departTime });
+    //       this.setState({ arrivetTime: data.arrivetTime });
+    //       this.setState({ passenger: data.passenger });
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   handleSearch(event) {
@@ -84,7 +88,9 @@ class Flight extends Component {
   }
 
   render() {
-    const { error } = this.state;
+
+const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = this.state;
+
 
     return (
       <>
@@ -146,13 +152,60 @@ class Flight extends Component {
               >
                 {error}
               </div>
-            ) : (
-              this.state.flights.map((link, index) => (
-                <div className="column" key={index}>
-                  flights
-                </div>
-              ))
-            )}
+            ) : 
+
+
+
+            <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Order#</th>
+                <th>Name</th>
+  
+                <th>Depart from</th>
+  
+                <th>Destination</th>
+                <th>Date</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+  
+            <tbody>
+              {flightx.map(x => 
+                <tr key={x.orderId}>
+                  <td>{x.orderId}</td>
+                  <td>{x.name}</td>
+                  <td>{x.fromLoc}</td>
+                  <td>{x.toLoc}</td>
+                  <td>{x.departDate}</td>
+                  <td>${x.price}</td>
+                  <td>
+  
+                    <button
+                      type="button"
+                      className="btn btn-light mr-1"
+                      onClick={() => this.cancelClick(x.orderId)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-trash-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+            
+          </table>
+
+
+            }
           </div>
         </div>
       </>
