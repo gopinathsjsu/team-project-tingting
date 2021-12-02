@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,10 +38,10 @@ public class Seat {
 	@Enumerated( EnumType.STRING )
 	private CabinClass cabinClass;
 	
-	@NotBlank(message = "Seat number is mandatory.")
+	@Min( value = 1, message = "Seat number is mandatory")
 	private int seatNumber;
 	
-	@Min( value = 1, message = "Seat position is mandatory")
+	@NotNull(message = "Seat position is mandatory.")
 	private char seatPosition;
 	
 	@DecimalMin( value = "0.00", message = "Seat price is mandatory")

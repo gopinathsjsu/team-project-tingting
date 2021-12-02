@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ import edu.sjsu.airline.service.AirportService;
 
 @RestController
 @RequestMapping(path = "/api/v1/airport")
+@CrossOrigin( origins = "*" )
 public class AirportController {
 	
 	@Autowired

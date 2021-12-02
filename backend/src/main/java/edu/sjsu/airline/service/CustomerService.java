@@ -62,7 +62,7 @@ public class CustomerService {
 		
 		newCustomer.setActive(true);
 		
-		newCustomer.setRewardAccount( new RewardAccount( newCustomer, "123456789", 0 ) );
+		newCustomer.setRewardAccount( new RewardAccount( newCustomer, String.valueOf( System.currentTimeMillis() ), 0 ) );
 		
 		newCustomer.setPassword( passwordEncoder.encode( newCustomer.getPassword() ) );
 		

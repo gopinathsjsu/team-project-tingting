@@ -71,17 +71,25 @@ public class BookFlightService {
 
 		for (Traveler traveler : travelers) {
 
-			Ticket ticket = new Ticket(reservation, traveler.getPassengerFirstName(), traveler.getPassengerMiddleName(),
-					traveler.getPassengerLastName(), traveler.getPassengerSuffix(), traveler.getDataOfBirth(),
-					traveler.getPassengerPhoneNumber());
-
-			if (departingFlight != null)
-
+			if (departingFlight != null) {
+				
+				Ticket ticket = new Ticket(reservation, traveler.getPassengerFirstName(), traveler.getPassengerMiddleName(),
+						traveler.getPassengerLastName(), traveler.getPassengerSuffix(), traveler.getDataOfBirth(),
+						traveler.getPassengerPhoneNumber());
+				
 				departingTickets.put(traveler.getInternalId(), ticket);
+				
+			} 
 
-			if (returningFlight != null)
-
+			if (returningFlight != null) {
+				
+				Ticket ticket = new Ticket(reservation, traveler.getPassengerFirstName(), traveler.getPassengerMiddleName(),
+						traveler.getPassengerLastName(), traveler.getPassengerSuffix(), traveler.getDataOfBirth(),
+						traveler.getPassengerPhoneNumber());
+				
 				returningTickets.put(traveler.getInternalId(), ticket);
+				
+			}
 
 		}
 
@@ -147,10 +155,9 @@ public class BookFlightService {
 
 		// Raise exception if user don't pay for the whole reservation
 		if (totalPaid != totalValue) {
-
-			throw new IllegalStateException("The amount paid ( " + totalPaid
-					+ " ) does not correspond to the total amount of the reservation ( " + totalValue + " ).");
-
+			
+			throw new IllegalStateException("Message:The amount paid (" + totalPaid + ") does not correspond to the total amount of the reservation (" + totalValue + ")");
+			
 		}
 
 		// New entry on the Purchase Log for using the reward as payment
@@ -159,9 +166,8 @@ public class BookFlightService {
 			// Raise exception if user try to use more reward that they have
 			if (payment.getTotalRewardPayment() > reservation.getCustomer().getRewardAccount().getBalance()) {
 
-				throw new IllegalStateException("The maximum amount of reward available is "
-						+ reservation.getCustomer().getRewardAccount().getBalance() + ".");
-
+				throw new IllegalStateException("Message:The maximum amount of reward available is" + reservation.getCustomer().getRewardAccount().getBalance());
+				
 			}
 
 			purchaseLogSell.setRewardAccount(reservation.getCustomer().getRewardAccount());

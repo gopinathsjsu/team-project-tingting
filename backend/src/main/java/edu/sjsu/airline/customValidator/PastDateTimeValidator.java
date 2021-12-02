@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class PastDateTimeValidator implements ConstraintValidator<PastDate, LocalDateTime> {
+public class PastDateTimeValidator implements ConstraintValidator<PastDateTime, LocalDateTime> {
 	
 	public boolean isValid( LocalDateTime date, ConstraintValidatorContext context ) {
 		
