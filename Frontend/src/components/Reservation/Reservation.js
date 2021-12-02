@@ -7,51 +7,51 @@ class Reservation extends Component {
     this.state = {
       flights: [{orderId: "1", name: "Joghn Doe" ,  fromLoc: "SFO",
       toLoc: "LAX",
-      departDate: "12/19/20021", price: "$342"}]
+      departDate: "12/19/20021", price: "342"}]
     };
   }
 
-//   flightList() {
-//     fetch("http://localhost:3001")
-//       .then((response) => {
-//         if (!response.ok) {
-//           throw new Error(response.statusText);
-//         }
-//         return response.json().then((data) => {
-//           this.setState({ flights: data});
-//         });
-//       })
-//       .catch((err) => {
-//         console.log(error);
-//       });
-//   }
+  flightList() {
+    fetch("http://localhost:3001")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json().then((data) => {
+          this.setState({ flights: data});
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
-//   componentDidMount() {
-//     this.flightList();
-//   }
+  componentDidMount() {
+    this.flightList();
+  }
 
 
-//   cancelClick(orderId) {
-//     if (window.confirm("Are you sure you want to cancel?")) {
-//       fetch("http://localhost:3001" + orderId, {
-//         method: "DELETE",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-Type": "application/json",
-//         },
-//       })
-//         .then((res) => res.json())
-//         .then(
-//           (result) => {
-//             alert(result);
-//             this.flightList();
-//           },
-//           (error) => {
-//             alert("Failed");
-//           }
-//         );
-//     }
-//   }
+  cancelClick(orderId) {
+    if (window.confirm("Are you sure you want to cancel?")) {
+      fetch("http://localhost:3001" + orderId, {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then(
+          (result) => {
+            alert(result);
+            this.flightList();
+          },
+          (error) => {
+            alert("Failed");
+          }
+        );
+    }
+  }
 
   render() {
 
@@ -83,7 +83,7 @@ class Reservation extends Component {
                 <td>{x.fromLoc}</td>
                 <td>{x.toLoc}</td>
                 <td>{x.departDate}</td>
-                <td>{x.price}</td>
+                <td>${x.price}</td>
                 <td>
 
                   <button

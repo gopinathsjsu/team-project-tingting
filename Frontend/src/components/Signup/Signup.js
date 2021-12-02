@@ -1,11 +1,78 @@
 import React, { Component } from "react";
 
 class Signup extends Component {
-	
-	render() {
-	  
-		let redirectVar = null;
-    
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      firstName:"",
+      middleName:"",
+      LastName:"",
+      birthday:"",
+      address:"",
+      address2:"",
+      city:"",
+      state:"",
+      country:"",
+      zipcode:"",
+      email:"",
+      phoneNum:"",
+      password:"",
+      error: null
+    };
+
+    this.submitSignup = this.submitSignup.bind(this);
+
+  }
+
+
+
+
+  submitSignup() {
+
+    fetch("http://localhost:3001",{
+      method:'POST',
+      headers:{
+          'Accept':'application/json',
+          'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+          DepartmentName:this.state.DepartmentName,
+          firstName:this.state.firstName,
+          middleName:this.state.middleName,
+          LastName:this.state.LastName,
+          birthday:this.state.birthday,
+          address:this.state.address,
+          address2:this.state.address2,
+          city:this.state.city,
+          state:this.state.state,
+          country:this.state.country,
+          zipcode:this.state.zipcode,
+          address2:this.state.address2,
+          email:this.state.email,
+          phoneNum:this.state.phoneNum,
+          password:this.state.password,
+
+      })
+  })
+  .then(res=>res.json())
+  .then((result)=>{
+      alert(result);
+      
+  },(error)=>{
+      alert('Failed');
+  })
+  }
+
+
+
+
+
+
+  render() {
+    let redirectVar = null;
+
     return (
       <div>
         {redirectVar}
@@ -24,7 +91,7 @@ class Signup extends Component {
                   placeholder="First Name"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -32,7 +99,7 @@ class Signup extends Component {
                   placeholder="Middle name"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -40,14 +107,10 @@ class Signup extends Component {
                   placeholder="Last name"
                 />
               </div>
-			  <div class="form-group">
-                <input
-                  type="date"
-                  class="form-control"
-                  name="dataOfBith"
-                />
+              <div class="form-group">
+                <input type="date" class="form-control" name="dataOfBith" />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -63,7 +126,7 @@ class Signup extends Component {
                   placeholder="Address 2"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -71,7 +134,7 @@ class Signup extends Component {
                   placeholder="City"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -79,7 +142,7 @@ class Signup extends Component {
                   placeholder="State"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -87,7 +150,7 @@ class Signup extends Component {
                   placeholder="Country"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -95,7 +158,7 @@ class Signup extends Component {
                   placeholder="Zipcode"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -103,7 +166,7 @@ class Signup extends Component {
                   placeholder="Email"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="text"
                   class="form-control"
@@ -111,7 +174,7 @@ class Signup extends Component {
                   placeholder="Phone number"
                 />
               </div>
-			  <div class="form-group">
+              <div class="form-group">
                 <input
                   type="Password"
                   class="form-control"
@@ -119,7 +182,7 @@ class Signup extends Component {
                   placeholder="Password"
                 />
               </div>
-              <button onClick={this.submitLogin} class="btn btn-primary">
+              <button onClick={this.submitSignup} class="btn btn-primary">
                 Create
               </button>
             </div>
@@ -127,7 +190,6 @@ class Signup extends Component {
         </div>
       </div>
     );
-	}
-
+  }
 }
 export default Signup;
