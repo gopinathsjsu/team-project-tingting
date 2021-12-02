@@ -3,6 +3,7 @@ package edu.sjsu.airline.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import edu.sjsu.airline.model.Customer;
@@ -15,6 +16,9 @@ public class CustomerService {
 	
 	private final CustomerRepository customerRepository;
 	private final RewardAccountRepository rewardAccountRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public CustomerService( CustomerRepository customerRepository, RewardAccountRepository rewardAccountRepository ) {
@@ -54,7 +58,13 @@ public class CustomerService {
 	
 	public void addCustomer( Customer newCustomer ) {
 		
+		newCustomer.setRoles("USER");
+		
+		newCustomer.setActive(true);
+		
 		newCustomer.setRewardAccount( new RewardAccount( newCustomer, "123456789", 0 ) );
+		
+		newCustomer.setPassword( passwordEncoder.encode( newCustomer.getPassword() ) );
 		
 		customerRepository.save(newCustomer);
 		
@@ -80,8 +90,8 @@ public class CustomerService {
 		
 		if( ! customerRepository.existsById( customerId ) )
 			
-			throw new IllegalStateException("Customer code " + customerId + " does not exits");
+			throw new IllegalStateException("customerId:Customer code " + customerId + " does not exits");
 		
 	}
-
+	
 }

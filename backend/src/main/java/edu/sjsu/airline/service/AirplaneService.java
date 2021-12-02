@@ -60,7 +60,7 @@ public class AirplaneService {
 		
 		if( ! airplaneRepository.existsById( airplaneId ) )
 			
-			throw new IllegalStateException("Airplane code " + airplaneId + " does not exits");
+			throw new IllegalStateException("airplaneCode:Airplane code " + airplaneId + " does not exits");
 		
 	}
 

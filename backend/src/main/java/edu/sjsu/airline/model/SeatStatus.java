@@ -1,7 +1,3 @@
 package edu.sjsu.airline.model;
 
-public enum SeatStatus {
-	
-	NotAvaiable, Avaiable
-
-}
+public enum SeatStatus { NotAvaiable, Avaiable }

@@ -2,16 +2,26 @@ package edu.sjsu.airline.model;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.Min;
+
+import edu.sjsu.airline.customValidator.AirportCode;
+import edu.sjsu.airline.customValidator.PastDate;
+
 public class SearchFlight {
 	
+	@AirportCode
 	private String originAirport;
 	
+	@AirportCode
 	private String returnAirport;
 	
+	@PastDate( message = "Departure date shouldn't be in the past." )
 	private LocalDate departureDate;
 	
+	@PastDate( message = "Return date shouldn't be in the past." )
 	private LocalDate returnDate;
 	
+	@Min( value = 1, message = "The minimum number of passenger is 1")
 	private int qtyPassager;
 	
 	public SearchFlight( ) { }

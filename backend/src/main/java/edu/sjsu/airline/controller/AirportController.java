@@ -1,16 +1,26 @@
 package edu.sjsu.airline.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
 
 import edu.sjsu.airline.model.Airport;
 import edu.sjsu.airline.service.AirportService;
@@ -19,14 +29,8 @@ import edu.sjsu.airline.service.AirportService;
 @RequestMapping(path = "/api/v1/airport")
 public class AirportController {
 	
-	private final AirportService airportService;
-	
 	@Autowired
-	public AirportController( AirportService airportService ) {
-		
-		this.airportService = airportService;
-		
-	}
+	private AirportService airportService;
 	
 	@GetMapping
 	public List<Airport> getAirports() {
@@ -43,14 +47,14 @@ public class AirportController {
 	}
 	
 	@PostMapping
-	public void addNewAirport( @RequestBody Airport airport ) {
+	public void addNewAirport( @Valid @RequestBody Airport airport ) {
 		
 		airportService.addAirport( airport );
 		
 	}
 	
 	@PutMapping
-	public void updateAirport( @RequestBody Airport airport ) {
+	public void updateAirport( @Valid @RequestBody Airport airport ) {
 		
 		airportService.updateAirport( airport );
 		
@@ -62,5 +66,24 @@ public class AirportController {
 		airportService.deleteAirport( airportCode );
 		
 	}
+	
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        
+		Map<String, String> errors = new HashMap<>();
+		
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+        	
+            String fieldName = ((FieldError) error).getField();
+            
+            String errorMessage = error.getDefaultMessage();
+            
+            errors.put(fieldName, errorMessage);
+            
+        });
+        
+        return errors;
+    }
 
 }

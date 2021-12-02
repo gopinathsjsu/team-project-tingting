@@ -7,8 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import edu.sjsu.airline.customValidator.UniqueAirport;
 
 @Entity
 @Table
@@ -16,14 +20,25 @@ public class Airport {
 	
 	@Id
 	@Column( unique = true)
+	@UniqueAirport
+	@NotBlank(message = "Airport Code is mandatory.")
+	@Size(min = 3, max = 3, message = "Airport Code should contain 3 characters.")
 	private String airportCode;
 	
+	@NotBlank(message = "Airport name is mandatory.")
+	@Size(min = 3, message = "Provide at least 3 characters.")
 	private String airportName;
 	
+	@NotBlank(message = "City is mandatory.")
+	@Size(min = 3, message = "Provide at least 3 characters.")
 	private String airportCity;
 	
+	@NotBlank(message = "State is mandatory.")
+	@Size(min = 2, message = "Provide at least 2 characters.")
 	private String airportState;
 	
+	@NotBlank(message = "Country is mandatory.")
+	@Size(min = 2, message = "Provide at least 2 characters.")
 	private String airportCountry;
 	
 	@JsonIgnore

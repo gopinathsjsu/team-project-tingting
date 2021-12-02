@@ -36,6 +36,10 @@ public class EmployeeService {
 	
 	public void addEmployee( Employee newEmployee ) {
 		
+		newEmployee.setRoles("ADMIN");
+		
+		newEmployee.setActive(true);
+		
 		employeeRepository.save(newEmployee);
 		
 	}
@@ -59,8 +63,8 @@ public class EmployeeService {
 	private void checkEmployeeCode( Long employeeId ) {
 		
 		if( ! employeeRepository.existsById( employeeId ) )
-			
-			throw new IllegalStateException("Employee code " + employeeId + " does not exits");
+				
+			throw new IllegalStateException("employeeId:Employee code \" + employeeId + \" does not exits");
 		
 	}
 	

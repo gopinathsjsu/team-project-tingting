@@ -78,7 +78,7 @@ public class SeatService {
 		
 		if( ! seatRepository.existsById( seatId ) )
 			
-			throw new IllegalStateException("Seat id " + seatId + " does not exits");
+			throw new IllegalStateException("seatId:Seat id \" + seatId + \" does not exits" );
 		
 	}
 

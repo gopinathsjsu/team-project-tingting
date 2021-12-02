@@ -23,12 +23,6 @@ public class Flight {
 	
 	private int flightNumber;
 	
-	@ManyToOne
-	private Route route;
-	
-	@ManyToOne
-	private Airplane flightEquipment;
-	
 	private LocalDateTime estimatedDepartureDateTime;
 	
 	private LocalDateTime estimatedArrivalDateTime;
@@ -36,6 +30,12 @@ public class Flight {
 	private LocalDateTime departureDateTime;
 	
 	private LocalDateTime arrivalDateTime;
+	
+	@ManyToOne
+	private Route route;
+	
+	@ManyToOne
+	private Airplane flightEquipment;
 	
 	@ManyToMany
 	@JoinTable( name = "crew" )

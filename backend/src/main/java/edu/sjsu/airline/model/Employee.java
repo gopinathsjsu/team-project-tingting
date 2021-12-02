@@ -12,12 +12,17 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import edu.sjsu.airline.customValidator.FutureDate;
+import edu.sjsu.airline.customValidator.EnumPattern;
+
 @Entity
 @Table
 public class Employee extends User {
 
+	@FutureDate( message = "Hired date should be in the past." )
 	private LocalDate hiredDate;
 	
+	@EnumPattern( regexp = "FRONTDESK|CUSTOMERSERVICE|PILOT|COPILOT|STEWARD|ENGINEER" )
 	@Enumerated( EnumType.STRING )
 	private Position position;
 	

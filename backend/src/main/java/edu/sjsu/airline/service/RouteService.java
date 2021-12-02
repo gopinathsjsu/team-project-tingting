@@ -60,7 +60,7 @@ public class RouteService {
 		
 		if( ! routeRepository.existsById( routeCode ) )
 			
-			throw new IllegalStateException("Route code " + routeCode + " does not exits");
+			throw new IllegalStateException("routeCode:Route code \" + routeCode + \" does not exits" );
 		
 	}
 

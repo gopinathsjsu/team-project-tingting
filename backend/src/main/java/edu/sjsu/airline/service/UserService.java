@@ -1,40 +1,30 @@
 package edu.sjsu.airline.service;
 
-import java.util.Optional;
-
-/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import edu.sjsu.airline.model.User;
 import edu.sjsu.airline.model.UserDetail;
-import edu.sjsu.airline.repository.CustomerRepository;
-*/
+import edu.sjsu.airline.repository.UserRepository;
 
-//@Service
-public class UserService /*implements UserDetailsService*/ {
-	/*
+
+@Service
+public class UserService implements UserDetailsService {
+	
 	@Autowired
-    CustomerRepository customerRepository;
+    UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) {
 		
-		System.out.println("Teste 1 :" + email);
+		User user = userRepository.findByEmail(email).get();
 		
-		Optional<User> user = customerRepository.findByEmail( email );
-				
-		user.orElseThrow(() -> new UsernameNotFoundException( "User not found: " + email ) );
-		
-		System.out.println("Teste 3");
-
-        return user.map( UserDetail::new ).get();
+		if (user == null)  throw new IllegalStateException("Message:our email or password is incorrect" );
+        
+        return new UserDetail(user);
 		
 	}
-	
-	*/
 
 }

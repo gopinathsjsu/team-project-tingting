@@ -94,8 +94,8 @@ public class ReservationService {
 		
 		if( ! reservationRepository.existsById( reservationId ) )
 			
-			throw new IllegalStateException("Reservation code " + reservationId + " does not exits");
-		
+			throw new IllegalStateException("reservationId:Reservation code \" + reservationId + \" does not exits");
+			
 	}
 	
 	private boolean checkReservationConstrain( Reservation reservation ) {
@@ -112,13 +112,13 @@ public class ReservationService {
 		
 		// Raise exception if the flight has already taken off 
 		if( flight.getDepartureDateTime() != null ) {
-					
-			throw new IllegalStateException("Flight " + flight.getFlightNumber() + " has already taken off.");
-				
+			
+			throw new IllegalStateException("Message:Flight \" + flight.getFlightNumber() + \" has already taken off");
+			
 		// Raise exception if the customer wants cancel the reservation less than 48 hours for the flight
 		} else if( flight.getDepartureDateTime() == null && LocalDateTime.now().isAfter( flight.getEstimatedDepartureDateTime().minusHours(48) ) )
 					
-			throw new IllegalStateException("The deadline for canceling the reservation was " + flight.getFlightNumber() );
+			throw new IllegalStateException("Message:The deadline for canceling the reservation was " + flight.getFlightNumber() );
 		
 	}
 	

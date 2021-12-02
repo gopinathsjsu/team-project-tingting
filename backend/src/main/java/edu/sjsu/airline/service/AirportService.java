@@ -38,7 +38,7 @@ public class AirportService {
 		
 		if( airportRepository.existsById( newAirport.getAirportCode() ) )
 			
-			throw new IllegalStateException("Airport code " + newAirport.getAirportCode() + " is already taken");
+			throw new IllegalStateException("airportCode:Airport code \" + newAirport.getAirportCode() + \" is already taken");
 		
 		airportRepository.save(newAirport);
 		

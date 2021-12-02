@@ -2,16 +2,27 @@ package edu.sjsu.airline.model;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+
+import edu.sjsu.airline.customValidator.AirportCode;
+import edu.sjsu.airline.customValidator.PastDateTime;
+
 public class NewFlightRequest {
 	
 	private Long flightId;
 	
+	@Digits( fraction = 0, integer = 4, message = "Flight number should contain 4 characters" )
+	@Min( value = 999, message = "Flight number should contain 4 characters")
 	private int flightNumber;
 	
+	@PastDateTime( message = "Estimated Departure time shouldn't be in the past." )
 	private LocalDateTime estimatedDepartureDateTime;
 	
+	@PastDateTime( message = "Estimated Arrival time shouldn't be in the past." )
 	private LocalDateTime estimatedArrivalDateTime;
 	
+	@AirportCode
 	private String routeCode;
 	
 	private Long airplaneId;

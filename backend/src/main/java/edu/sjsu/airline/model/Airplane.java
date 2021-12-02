@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
@@ -16,12 +19,17 @@ public class Airplane {
 	@SequenceGenerator(name="airplane_generator", sequenceName = "airplane_seq", allocationSize=1)
 	private Long airplaneId;
 	
+	@NotBlank(message = "Airplane code is mandatory.")
 	private String airplaneCode;
 	
+	@NotBlank(message = "Airplane model is mandatory.")
 	private String airplaneModel;
 	
+	@NotBlank(message = "Airplane Manufacture is mandatory.")
+	@Size(min = 3, message = "Provide at least 3 characters.")
 	private String airplaneManufacture;
 	
+	@Min(value = 2, message = "The minimum numbers of seats is 2.")
 	private int numberOfSeats;
 	
 	public Airplane( ) { }

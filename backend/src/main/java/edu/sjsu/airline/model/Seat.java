@@ -13,12 +13,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.ToString;
+import edu.sjsu.airline.customValidator.EnumPattern;
 
-@ToString
 @Entity
 @Table
 public class Seat {
@@ -28,6 +30,23 @@ public class Seat {
 	@SequenceGenerator(name="seat_generator", sequenceName = "seat_seq", allocationSize=1)
 	private Long seatId;
 	
+	@EnumPattern( regexp = "NotAvaiable|Avaiable" )
+	@Enumerated( EnumType.STRING )
+	private SeatStatus seatStatus;
+	
+	@EnumPattern( regexp = "Economy|Business|FirstClass" )
+	@Enumerated( EnumType.STRING )
+	private CabinClass cabinClass;
+	
+	@NotBlank(message = "Seat number is mandatory.")
+	private int seatNumber;
+	
+	@Min( value = 1, message = "Seat position is mandatory")
+	private char seatPosition;
+	
+	@DecimalMin( value = "0.00", message = "Seat price is mandatory")
+	private double seatPrice;
+	
 	@JsonIgnore
 	@ManyToOne( cascade = CascadeType.MERGE )
 	@JoinColumn( name = "flight_id" )
@@ -36,18 +55,6 @@ public class Seat {
 	@JsonIgnore
 	@OneToOne
 	private Ticket ticket;
-	
-	@Enumerated( EnumType.STRING )
-	private SeatStatus seatStatus;
-	
-	@Enumerated( EnumType.STRING )
-	private CabinClass cabinClass;
-	
-	private int seatNumber;
-	
-	private char seatPosition;
-	
-	private double seatPrice;
 	
 	@Transient
 	private Long flightId;

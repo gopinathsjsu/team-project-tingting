@@ -5,12 +5,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import edu.sjsu.airline.customValidator.AirportCode;
+import edu.sjsu.airline.customValidator.UniqueRoute;
 
 @Entity
 @Table
 public class Route {
 	
 	@Id
+	@NotBlank(message = "Route code is mandatory")
+	@UniqueRoute
+	@AirportCode
 	private String routeCode;
 	
 	@ManyToOne( cascade = CascadeType.ALL )
@@ -19,6 +27,7 @@ public class Route {
 	@ManyToOne( cascade = CascadeType.ALL )
 	private Airport destinationAirport;
 	
+	@Min( value = 2, message = "The minimum distance for a route is 2 miles")
 	private double routeDistance;
 	
 	private boolean isActive;
@@ -72,7 +81,7 @@ public class Route {
 	}
 
 	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+		this.isActive = true;
 	}
 	
 }

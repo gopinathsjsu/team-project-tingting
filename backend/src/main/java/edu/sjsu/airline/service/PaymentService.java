@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.sjsu.airline.model.Payment;
-import edu.sjsu.airline.model.Ticket;
 import edu.sjsu.airline.repository.PaymentRepository;
 
 @Service
