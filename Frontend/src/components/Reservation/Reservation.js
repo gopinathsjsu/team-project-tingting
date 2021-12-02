@@ -5,58 +5,57 @@ class Reservation extends Component {
     super(props);
 
     this.state = {
-      //   departments: [],
-      flights: [{ order: "1", name: "Joghn Doe" ,  fromLoc: "",
+      flights: [{orderId: "1", name: "Joghn Doe" ,  fromLoc: "SFO",
       toLoc: "LAX",
-      departDate: "12/19/20021", price: "$342"}],
+      departDate: "12/19/20021", price: "$342"}]
     };
   }
 
-  flightList() {
-    fetch("http://localhost:3001")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        return response.json().then((data) => {
-          this.setState({ flights: data});
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+//   flightList() {
+//     fetch("http://localhost:3001")
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error(response.statusText);
+//         }
+//         return response.json().then((data) => {
+//           this.setState({ flights: data});
+//         });
+//       })
+//       .catch((err) => {
+//         console.log(error);
+//       });
+//   }
 
-  componentDidMount() {
-    this.flightList();
-  }
+//   componentDidMount() {
+//     this.flightList();
+//   }
 
 
-  cancelClick(order) {
-    if (window.confirm("Are you sure you want to cancel?")) {
-      fetch("http://localhost:3001" + order, {
-        method: "DELETE",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            alert(result);
-            this.flightList();
-          },
-          (error) => {
-            alert("Failed");
-          }
-        );
-    }
-  }
+//   cancelClick(orderId) {
+//     if (window.confirm("Are you sure you want to cancel?")) {
+//       fetch("http://localhost:3001" + orderId, {
+//         method: "DELETE",
+//         headers: {
+//           Accept: "application/json",
+//           "Content-Type": "application/json",
+//         },
+//       })
+//         .then((res) => res.json())
+//         .then(
+//           (result) => {
+//             alert(result);
+//             this.flightList();
+//           },
+//           (error) => {
+//             alert("Failed");
+//           }
+//         );
+//     }
+//   }
 
   render() {
 
-    const { flights, order, name,  fromLoc, toLoc, departDate, price} = this.state;
+    const { flights, orderId, name,  fromLoc, toLoc, departDate, price} = this.state;
 
     return (
       <div>
@@ -75,20 +74,22 @@ class Reservation extends Component {
               <th>Price</th>
             </tr>
           </thead>
+
           <tbody>
-            {this.flights.map((x) => (
-              <tr key={x.flights.order}>
-                <td>{x.flights.order}</td>
-                <td>{x.flights.name}</td>
-                <td>{x.flights.fromLoc}</td>
-                <td>{x.flights.toLoc}</td>
-                <td>{x.flights.departDate}</td>
-                <td>{x.flights.price}</td>
+            {flights.map(x => 
+              <tr key={x.orderId}>
+                <td>{x.orderId}</td>
+                <td>{x.name}</td>
+                <td>{x.fromLoc}</td>
+                <td>{x.toLoc}</td>
+                <td>{x.departDate}</td>
+                <td>{x.price}</td>
                 <td>
+
                   <button
                     type="button"
                     className="btn btn-light mr-1"
-                    onClick={() => this.cancelClick(x.flights.order)}
+                    onClick={() => this.cancelClick(x.orderId)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -103,8 +104,9 @@ class Reservation extends Component {
                   </button>
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
+          
         </table>
       </div>
     );
