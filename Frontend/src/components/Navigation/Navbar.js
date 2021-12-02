@@ -12,7 +12,6 @@ class Navbar extends Component {
           <h2 style = {{color: "#1a1b1d" }}className="title">
 
 
-
             Airline
             
             
@@ -44,12 +43,21 @@ class Navbar extends Component {
               </NavLink>
             </li>
 
+            <li className="nav-item">
+              <NavLink
+                className="btn btn-light btn-outline-secondary "
+                to="/reservation"
+              >
+                Reservation
+              </NavLink>
+              </li>
+
             <li className="nav-item ">
               <NavLink
                 className="btn btn-light btn-outline-secondary "
                 to="/signup"
               >
-                Create
+                Signup
               </NavLink>
             </li>
             <li className="nav-item">

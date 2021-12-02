@@ -8,6 +8,8 @@ import Login from "./Login/Login";
 import Flight from "./Flight/Flight";
 import Checkout from "./Checkout/Checkout";
 import Signup from "./Signup/Signup.js";
+import Reservation from "./Reservation/Reservation.js";
+
 
 
 // import Navbar from './Navigation/Navbar';
@@ -28,6 +30,7 @@ class Main extends Component {
           <Route path="/flight" element={<Flight />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/reservation" element={<Reservation />} />
 
         </Routes>
       </div>
