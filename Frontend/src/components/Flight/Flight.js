@@ -47,18 +47,16 @@ class Flight extends Component {
     event.preventDefault();
     console.log(this.state.searchValue);
 
-
     let x = false;
 
-      if (
-        this.state.fromLoc == this.state.searchValue1 &&
-        this.state.toLoc == this.state.searchValue2 &&
-        this.state.departTime == this.state.searchValue3
-      ) {
-        console.log("working");
-        x = true;
-      } else console.log("flag is false");
-    
+    if (
+      this.state.fromLoc == this.state.searchValue1 &&
+      this.state.toLoc == this.state.searchValue2 &&
+      this.state.departTime == this.state.searchValue3
+    ) {
+      console.log("working");
+      x = true;
+    } else console.log("flag is false");
 
     console.log(x);
 
