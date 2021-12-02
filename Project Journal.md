@@ -55,13 +55,13 @@
 
 • Team Member Name: AJ
 
-- What tasks did I work on / complete?
+- What tasks did I work on / complete? I worked on the front end.
   
-- What am I planning to work on next?
+- What am I planning to work on next? Front end.
 
-- What tasks are blocked waiting on another team member?
+- What tasks are blocked waiting on another team member? I am waiting for the wireframes.
 
-- XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
+- XP Values: Communication
 
 
 • Team Member Name: Rodrigo Colasso
@@ -73,6 +73,7 @@
 - What tasks are blocked waiting on another team member?
 
 - XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
+
 
 • Team Member Name: Thai
 
@@ -95,17 +96,18 @@
 
 - XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
 
+
 ## Sprint #3:
 
 • Team Member Name: AJ
 
-- What tasks did I work on / complete?
+- What tasks did I work on / complete? The front end.
 
-- What am I planning to work on next?
+- What am I planning to work on next? I'm planning to work on getting it working with the backend.
 
-- What tasks are blocked waiting on another team member?
+- What tasks are blocked waiting on another team member? Help with the front end.
 
-- XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
+- XP Values: Feedback
 
 
 • Team Member Name: Rodrigo
