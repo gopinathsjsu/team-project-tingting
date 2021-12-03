@@ -49,6 +49,20 @@ public class SeatService {
 		
 	}
 	
+	public void addSeats( List<Seat> newSeats ) {
+		
+		Flight flight = flightService.getByFlightId( newSeats.get(0).getFlightId() );
+		
+		for( Seat newSeat : newSeats ) {
+			
+			newSeat.setFlight(flight);
+			
+			seatRepository.save(newSeat);
+			
+		}
+		
+	}
+	
 	public void updateSeat( Seat seat ) {
 		
 		checkSeatCode( seat.getSeatId() );

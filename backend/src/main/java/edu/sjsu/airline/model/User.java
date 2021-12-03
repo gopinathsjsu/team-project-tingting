@@ -75,14 +75,14 @@ public class User {
 	
 	public User() { }
 	
-	public User(String firstName, String middleName, String lastName, LocalDate dataOfBith, String address1,
+	public User(String firstName, String middleName, String lastName, LocalDate dateOfBirth, String address1,
 			String address2, String city, String state, String country, String zipCode, String email,
 			String phoneNumber, String password, boolean active, String roles) {
 		super();
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
-		this.dateOfBirth = dataOfBith;
+		this.dateOfBirth = dateOfBirth;
 		this.address1 = address1;
 		this.address2 = address2;
 		this.city = city;
@@ -132,8 +132,8 @@ public class User {
 		return dateOfBirth;
 	}
 
-	public void setDataOfBith(LocalDate dataOfBith) {
-		this.dateOfBirth = dataOfBith;
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getAddress1() {
@@ -227,7 +227,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
-				+ lastName + ", dataOfBith=" + dateOfBirth + ", address1=" + address1 + ", address2=" + address2
+				+ lastName + ", dateOfBirth=" + dateOfBirth + ", address1=" + address1 + ", address2=" + address2
 				+ ", city=" + city + ", state=" + state + ", country=" + country + ", zipCode=" + zipCode + ", email="
 				+ email + ", phoneNumber=" + phoneNumber + ", password=" + password + ", active=" + active + ", roles="
 				+ roles + "]";
