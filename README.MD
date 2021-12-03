@@ -8,8 +8,8 @@
 - Thai Truong
 
 ## Tools
-- Backend:React
-- Frontend:Nodejs
+- Backend: Java spring boot
+- Frontend:React JS
 - Database:MySQL
 - API testing:Postman
 - Cloud:EC2 Cluster with Load Balancer
@@ -31,7 +31,9 @@
 ### Tech Stack
 ![image](https://user-images.githubusercontent.com/62269628/140171865-b5e91d6d-a0a9-43e8-8fc5-ea5f314a4ae1.png)
 
+### WIREFRAME
 
+![Wireframe](https://user-images.githubusercontent.com/58872439/144554123-5f0aeb51-e9b0-4875-af34-5c156774099c.jpeg)
 
 ## Design Decisions
 
