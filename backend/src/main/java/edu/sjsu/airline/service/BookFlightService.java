@@ -166,7 +166,7 @@ public class BookFlightService {
 			// Raise exception if user try to use more reward that they have
 			if (payment.getTotalRewardPayment() > reservation.getCustomer().getRewardAccount().getBalance()) {
 
-				throw new IllegalStateException("Message:The maximum amount of reward available is" + reservation.getCustomer().getRewardAccount().getBalance());
+				throw new IllegalStateException("Message:The maximum amount of reward available is " + reservation.getCustomer().getRewardAccount().getBalance());
 				
 			}
 
