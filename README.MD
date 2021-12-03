@@ -7,6 +7,16 @@
 - Rodrigo Colasso Teixeira
 - Thai Truong
 
+## Tools
+- Backend:React
+- Frontend:Nodejs
+- Database:MySQL
+- API testing:Postman
+- Cloud:EC2 Cluster with Load Balancer
+
+## Tasks Allocation
+- Frontend:AJ Dela Cruz and Thai Truong
+- Backend: Rodrigo Colasso Teixeira and Hema Aishwarya Talluri
 
 ## Architecture Diagram
 ### Activity Diagram
