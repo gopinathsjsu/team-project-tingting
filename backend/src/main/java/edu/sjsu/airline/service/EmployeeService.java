@@ -3,6 +3,7 @@ package edu.sjsu.airline.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import edu.sjsu.airline.model.Employee;
@@ -12,6 +13,9 @@ import edu.sjsu.airline.repository.EmployeeRepository;
 public class EmployeeService {
 	
 	private final EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	public EmployeeService ( EmployeeRepository employeeRepository ) {
@@ -39,6 +43,8 @@ public class EmployeeService {
 		newEmployee.setRoles("ADMIN");
 		
 		newEmployee.setActive(true);
+		
+		newEmployee.setPassword( passwordEncoder.encode( newEmployee.getPassword() ) );
 		
 		employeeRepository.save(newEmployee);
 		

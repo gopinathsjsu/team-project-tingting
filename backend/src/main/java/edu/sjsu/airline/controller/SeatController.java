@@ -61,6 +61,13 @@ public class SeatController {
 		
 	}
 	
+	@PutMapping( path = "/addList")
+	public void addNewSeats( @RequestBody List<Seat> seats ) {
+		
+		seatService.addSeats( seats );
+		
+	}
+	
 	@PutMapping
 	public void updateSeat( @Valid @RequestBody Seat seat ) {
 		
