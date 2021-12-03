@@ -12,14 +12,16 @@ class Flight extends Component {
       toLoc: "",
       departTime: "",
       arrivetTime: "",
-      name: "",
       passenger: 0,
-      flights: [],
       error: null,
 
-      flightx: [{orderId: "1", name: "Joghn Doe" ,  fromLoc: "SFO",
+      flightx: [{fromLoc: "SFO",
       toLoc: "LAX",
-      departDate: "12/19/20021", price: "342"}]
+      departDate: "12/21/20021", arriveDate: "12/22/20021",  price: "342"}, 
+      
+      {fromLoc: "LAX",
+      toLoc: "SFO",
+      departDate: "12/22/20021", arriveDate: "12/23/20021",  price: "541"} ]
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -89,7 +91,7 @@ class Flight extends Component {
 
   render() {
 
-const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = this.state;
+const { error, flightx, fromLoc, toLoc, departDate, arriveDate, price} = this.state;
 
 
     return (
@@ -98,7 +100,91 @@ const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = thi
           <div>
             <h3 style={{ fontFamily: "Copperplate" }}> Search for flights</h3>
 
-            <form className="form">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th>Depart </th>
+                  <th>Arrive</th>
+
+                  <th>Depart Date</th>
+                  <th>Return Date</th>
+
+                  <th>Passengers</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <td>
+                  <input
+                    style={{ width: "300px" }}
+                    type="text"
+                    placeholder="From"
+                    value={this.state.searchValue1}
+                    onChange={this.handleChange}
+                  />
+                </td>
+
+                <td>
+                  <input
+                    style={{ width: "300px" }}
+                    type="text"
+                    placeholder="To"
+                    value={this.state.searchValue1}
+                    onChange={this.handleChange}
+                  />
+                </td>
+
+                <td>
+                  <input
+                    style={{ width: "300px" }}
+                    type="Date"
+                    placeholder="From"
+                    value={this.state.searchValue1}
+                    onChange={this.handleChange}
+                  />
+                </td>
+
+                <td>
+                  <input
+                    style={{ width: "300px" }}
+                    type="Date"
+                    placeholder="From"
+                    value={this.state.searchValue1}
+                    onChange={this.handleChange}
+                  />
+                </td>
+                <td>
+                  <input
+                    style={{ width: "250px" }}
+                    type="text"
+                    placeholder="#"
+                    value={this.state.searchValue1}
+                    onChange={this.handleChange}
+                  />
+                </td>
+
+                <button
+                  style={{ marginTop: "9px", width: "120px" }}
+                  value="Submit"
+                  className="button"
+                  onClick={this.handleSearch}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-search"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                  </svg>
+                  Search
+                </button>
+              </tbody>
+            </table>
+
+            {/* <form className="form">
               <input
                 type="text"
                 placeholder="From"
@@ -118,7 +204,9 @@ const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = thi
                 value={this.state.searchValue3}
                 onChange={this.handleChange}
               />
-            </form>
+            </form> */}
+
+            {/* <td>
             <button
               value="Submit"
               className="button"
@@ -136,6 +224,8 @@ const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = thi
               </svg>
               Search
             </button>
+
+          </td> */}
           </div>
         </div>
 
@@ -156,13 +246,11 @@ const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = thi
               <table className="table table-striped">
                 <thead>
                   <tr>
-                    <th>Order#</th>
-                    <th>Name</th>
-
                     <th>Depart from</th>
 
                     <th>Destination</th>
-                    <th>Date</th>
+                    <th>Depart</th>
+                    <th>Return</th>
                     <th>Price</th>
                   </tr>
                 </thead>
@@ -170,16 +258,16 @@ const { error, flightx, orderId, name,  fromLoc, toLoc, departDate, price} = thi
                 <tbody>
                   {flightx.map((x) => (
                     <tr key={x.orderId}>
-                      <td>{x.orderId}</td>
-                      <td>{x.name}</td>
                       <td>{x.fromLoc}</td>
                       <td>{x.toLoc}</td>
                       <td>{x.departDate}</td>
+                      <td>{x.arriveDate}</td>
                       <td>${x.price}</td>
                       <td>
                         <button
                           type="button"
-                          className="btn btn-light mr-1"
+                          className="btn btn-success"
+                          width="5000px"
                           onClick={() => this.cancelClick(x.orderId)}
                         >
                           <svg
