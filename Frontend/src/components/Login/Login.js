@@ -76,7 +76,7 @@ class Login extends Component {
     return (
       <div>
         {redirectVar}
-        <div class="container">
+        <div class="container" style={{fontFamily:"Copperplate", fontSize:"20px", width: "600px"}}>
           <div class="login-form">
             <div class="main-div">
               <div class="panel">
@@ -106,9 +106,9 @@ class Login extends Component {
                 Login
               </button>
             </div>
-            <div>
-              <button onClick={this.submitSignup} class="btn btn-primary">
-                Create new account
+            <div style={{marginTop: "10px"}}>
+              <button onClick={this.submitSignup} class="btn btn-primary" >
+                Signup
               </button>
             </div>
           </div>
