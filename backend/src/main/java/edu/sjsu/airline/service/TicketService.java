@@ -95,6 +95,10 @@ public class TicketService {
 	
 	private boolean checkTicketConstrain( Ticket ticket ) {
 		
+		if( ticket.getCancelDateTime() != null ) 
+			
+			throw new IllegalStateException("Message:This ticket is already canceled" );
+		
 		Flight flight = ticket.getSeat().getFlight();
 		
 		// Raise exception if the flight has already taken off 
