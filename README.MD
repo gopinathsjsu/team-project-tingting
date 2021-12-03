@@ -6,17 +6,6 @@
 - Hema Aishwarya Talluri
 - Rodrigo Colasso Teixeira
 - Thai Truong
-## Tools:
-- Frontend:ReactJs
-- Backend:Eclipse,Spring boot
-- Cloud:
-- Database
-
-## Task Allocation
-- AJ Dela Cruz:
-- Hema Aishwarya Talluri:
-- Rodrigo Colasso Teixeira:
-- Thai Truong:
 
 
 ## Architecture Diagram
