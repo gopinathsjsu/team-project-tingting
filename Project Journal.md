@@ -67,12 +67,20 @@
 • Team Member Name: Rodrigo Colasso
 
 - What tasks did I work on / complete?
-  
+  - CRUD on the main routes;
+  - Changes on the Class Diagram
+  - Search for flights
+  - Checkout flight
+  -
 - What am I planning to work on next?
+  - Modify reservation 
 
 - What tasks are blocked waiting on another team member?
-
-- XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
+  - NA
+  
+- XP Values: Feedback
+  - Checked with the others members what they are doing and give then feedback about my taks
+  - Informed my team about the tasks I had already completed this week and which ones I was planning to do.
 
 
 • Team Member Name: Thai
@@ -113,14 +121,19 @@
 • Team Member Name: Rodrigo
 
 - What tasks did I work on / complete?
+  - Modify reservation;
+  - Validation of inputs;
+  - Testing, debugging, and correcting;
 
 - What am I planning to work on next?
-
+  - NA
+  
 - What tasks are blocked waiting on another team member?
-
-- XP Values: Select one & delete rest: Communication, Simplicity, Feedback, Courage, Respect
-
-
+  - NA
+  
+- XP Values: Feedback
+  - Checked with the others members what they are doing and give then feedback about my taks
+  - Informed my team about the tasks I had already completed this week and which ones I was planning to do.
 
 • Team Member Name: Thai
 
