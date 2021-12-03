@@ -38,27 +38,42 @@ class Login extends Component {
   
   //submit Login handler to send a request to the backend
   submitLogin = (e) => {
-    var headers = new Headers();
+    // var headers = new Headers();
     e.preventDefault();
-    const data = {
-      username: this.state.username,
-      password: this.state.password,
-    };
-    //set the with credentials to true
-    axios.defaults.withCredentials = true;
-    //make a post request with the user data
-    axios.post("http://localhost:3001/login", data).then((response) => {
-      console.log("Status Code : ", response.status);
-      if (response.status === 200) {
-        this.setState({
-          authFlag: true,
-        });
-      } else {
-        this.setState({
-          authFlag: false,
-        });
+    
+    fetch("http://localhost:3001/users")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
       }
+      return response.json().then((data) => {
+        console.log(data)
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("Failed");
     });
+
+     // const data = {
+    //   username: this.state.username,
+    //   password: this.state.password,
+    // };
+    //set the with credentials to true
+    // axios.defaults.withCredentials = true;
+    //make a post request with the user data
+    // axios.post("http://localhost:3001/login", data).then((response) => {
+    //   console.log("Status Code : ", response.status);
+    //   if (response.status === 200) {
+    //     this.setState({
+    //       authFlag: true,
+    //     });
+    //   } else {
+    //     this.setState({
+    //       authFlag: false,
+    //     });
+    //   }
+    // });
   };
 
   submitSignup = (e) => {
