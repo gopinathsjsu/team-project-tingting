@@ -13,8 +13,6 @@ class Navbar extends Component {
 
 
             Airline
-            
-            
           </h2>
 
           <ul  className="nav nav-pills">

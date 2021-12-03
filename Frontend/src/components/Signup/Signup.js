@@ -1,80 +1,70 @@
 import React, { Component } from "react";
 
 class Signup extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName:"",
-      middleName:"",
-      LastName:"",
-      birthday:"",
-      address:"",
-      address2:"",
-      city:"",
-      state:"",
-      country:"",
-      zipcode:"",
-      email:"",
-      phoneNum:"",
-      password:"",
-      error: null
+      firstName: "",
+      middleName: "",
+      LastName: "",
+      birthday: "",
+      address: "",
+      address2: "",
+      city: "",
+      state: "",
+      country: "",
+      zipcode: "",
+      email: "",
+      phoneNum: "",
+      password: "",
+      error: null,
     };
 
     this.submitSignup = this.submitSignup.bind(this);
-
   }
-
-
-
 
   submitSignup() {
-
-    fetch("http://localhost:3001",{
-      method:'POST',
-      headers:{
-          'Accept':'application/json',
-          'Content-Type':'application/json'
+    fetch("http://localhost:3001", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify({
-          DepartmentName:this.state.DepartmentName,
-          firstName:this.state.firstName,
-          middleName:this.state.middleName,
-          LastName:this.state.LastName,
-          birthday:this.state.birthday,
-          address:this.state.address,
-          address2:this.state.address2,
-          city:this.state.city,
-          state:this.state.state,
-          country:this.state.country,
-          zipcode:this.state.zipcode,
-          address2:this.state.address2,
-          email:this.state.email,
-          phoneNum:this.state.phoneNum,
-          password:this.state.password,
-
-      })
-  })
-  .then(res=>res.json())
-  .then((result)=>{
-      alert(result);
-      
-  },(error)=>{
-      alert('Failed');
-  })
+      body: JSON.stringify({
+        DepartmentName: this.state.DepartmentName,
+        firstName: this.state.firstName,
+        middleName: this.state.middleName,
+        LastName: this.state.LastName,
+        birthday: this.state.birthday,
+        address: this.state.address,
+        address2: this.state.address2,
+        city: this.state.city,
+        state: this.state.state,
+        country: this.state.country,
+        zipcode: this.state.zipcode,
+        address2: this.state.address2,
+        email: this.state.email,
+        phoneNum: this.state.phoneNum,
+        password: this.state.password,
+      }),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          alert(result);
+        },
+        (error) => {
+          alert("Failed");
+        }
+      );
   }
-
-
-
-
-
 
   render() {
     let redirectVar = null;
 
     return (
-      <div>
+      <div className="headerh1" style={{ width: "900px"  }}>
         {redirectVar}
         <div class="container">
           <div class="singup-form">

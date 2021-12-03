@@ -7,7 +7,16 @@ class Reservation extends Component {
     this.state = {
       flights: [{orderId: "1", name: "Joghn Doe" ,  fromLoc: "SFO",
       toLoc: "LAX",
-      departDate: "12/19/20021", price: "342"}]
+      departDate: "12/19/20021", price: "342"}],
+
+
+      //flight: [],
+    //   orderId: "",
+    //   name: "",  
+    //   fromLoc: "",
+    //   toLoc: "",
+    //   departDate: "", 
+    //   price: 0
     };
   }
 
@@ -33,7 +42,7 @@ class Reservation extends Component {
 
   cancelClick(orderId) {
     if (window.confirm("Are you sure you want to cancel?")) {
-      fetch("http://localhost:3001" + orderId, {
+      fetch("http://localhost:3001/" + orderId, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
