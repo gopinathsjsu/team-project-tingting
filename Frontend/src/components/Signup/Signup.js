@@ -70,7 +70,7 @@ class Signup extends Component {
           <div class="singup-form">
             <div class="main-div">
               <div class="panel">
-                <h2>New Customer</h2>
+                <h2>Sign up</h2>
               </div>
 
               <div class="form-group">

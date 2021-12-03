@@ -30,23 +30,23 @@ class Flight extends Component {
 
   handleChange(event) {
     this.setState({ searchValue: event.target.value });
-    // fetch("http://localhost:3001")
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error(response.statusText);
-    //     }
-    //     return response.json().then((data) => {
-    //       this.setState({ flights: data });
-    //       this.setState({ fromLoc: data.fromLoc });
-    //       this.setState({ toLoc: data.toLoc });
-    //       this.setState({ departTime: data.departTime });
-    //       this.setState({ arrivetTime: data.arrivetTime });
-    //       this.setState({ passenger: data.passenger });
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    fetch("http://localhost:3001")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json().then((data) => {
+          this.setState({ flights: data });
+          this.setState({ fromLoc: data.fromLoc });
+          this.setState({ toLoc: data.toLoc });
+          this.setState({ departTime: data.departTime });
+          this.setState({ arrivetTime: data.arrivetTime });
+          this.setState({ passenger: data.passenger });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   handleSearch(event) {

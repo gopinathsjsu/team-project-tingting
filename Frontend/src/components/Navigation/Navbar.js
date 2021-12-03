@@ -23,14 +23,14 @@ class Navbar extends Component {
             </li>
 
 
-             <li className="nav-item ">
+             {/* <li className="nav-item ">
               <NavLink
                 className="btn btn-light btn-outline-secondary "
                 to="/login"
               >
                 Login
               </NavLink>
-            </li>
+            </li> */}
 
             <li className="nav-item ">
               <NavLink
@@ -50,23 +50,25 @@ class Navbar extends Component {
               </NavLink>
               </li>
 
-            <li className="nav-item ">
+            {/* <li className="nav-item ">
               <NavLink
                 className="btn btn-light btn-outline-secondary "
                 to="/signup"
               >
                 Signup
               </NavLink>
-            </li>
+            </li> */}
+
+
             <li className="nav-item">
               <NavLink
                 className="btn btn-light btn-outline-secondary "
                 to="/checkout"
               >
-                Checkout
+                Cart
               </NavLink>
             </li>
-
+{/* 
             <li className="nav-item ">
               <NavLink
                 className="btn btn-light btn-outline-secondary "
@@ -74,14 +76,24 @@ class Navbar extends Component {
               >
                 About
               </NavLink>
-            </li>
+            </li> */}
 
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink
                 className="btn btn-light btn-outline-secondary "
                 to="/contact"
               >
                 Contact
+              </NavLink>
+            </li> */}
+
+
+             <li className="nav-item">
+              <NavLink
+                className="btn btn-light btn-outline-secondary "
+                to="/logout"
+              >
+                Logout
               </NavLink>
             </li>
           </ul>

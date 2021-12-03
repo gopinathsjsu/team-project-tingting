@@ -76,7 +76,7 @@ class Reservation extends Component {
               <th>Order#</th>
               <th>Name</th>
 
-              <th>Depart from</th>
+              <th>Depart </th>
 
               <th>Destination</th>
               <th>Date</th>

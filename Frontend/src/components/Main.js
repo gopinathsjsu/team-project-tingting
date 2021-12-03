@@ -9,6 +9,8 @@ import Flight from "./Flight/Flight";
 import Checkout from "./Checkout/Checkout";
 import Signup from "./Signup/Signup.js";
 import Reservation from "./Reservation/Reservation.js";
+import Logout from "./Logout/Logout.js";
+
 
 
 
@@ -31,6 +33,7 @@ class Main extends Component {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/reservation" element={<Reservation />} />
+          <Route path="/logout" element={<Logout />} />
 
         </Routes>
       </div>
